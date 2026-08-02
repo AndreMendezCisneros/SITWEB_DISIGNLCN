@@ -1,0 +1,15 @@
+---
+description: Seguridad LCS — RLS, secretos, rate limit, auditoría
+globs: web/src/app/api/**/*,web/src/lib/**/*,web/src/services/**/*,web/supabase/**/*
+alwaysApply: false
+---
+
+# Seguridad LCS
+
+- Service role **nunca** en `NEXT_PUBLIC_*`.
+- Toda tabla con RLS. Fail closed en mutaciones.
+- Endpoints públicos y auth: `enforceRateLimit` + audit `security.rate_limit_hit` en 429.
+- Mutaciones de contenido/usuarios/config: escribir `audit_events` (RPC o service).
+- Validar con Zod en servidor. Origin check en Route Handlers.
+- Uploads: allowlist mime + tamaño; rename server-side.
+- No loguear passwords, tokens ni binarios.

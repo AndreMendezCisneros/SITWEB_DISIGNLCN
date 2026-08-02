@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --lcs-black: #0a0a0a;
+  --lcs-charcoal: #141414;
+  --lcs-gold: #c9a227;
+  --lcs-gold-soft: #e0c35a;
+  --lcs-white: #f7f7f5;
+  --lcs-muted: #9a9a92;
+  --background: var(--lcs-black);
+  --foreground: var(--lcs-white);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Superficies del CMS (workspaces) — look tipo dashboard, marca LCS */
+@layer components {
+  .cms-card {
+    @apply rounded-2xl border border-black/[0.04] bg-white shadow-[0_8px_30px_rgba(0,0,0,0.04)];
+  }
+  .cms-card-soft {
+    @apply rounded-2xl bg-white/80 shadow-[0_4px_20px_rgba(0,0,0,0.03)] ring-1 ring-black/[0.04];
+  }
+  .cms-pill {
+    @apply inline-flex items-center rounded-full px-3 py-1 text-xs font-medium;
+  }
+}

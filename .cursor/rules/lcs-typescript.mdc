@@ -1,0 +1,13 @@
+---
+description: TypeScript LCS — strict, Zod, capa services
+globs: web/**/*.{ts,tsx}
+alwaysApply: false
+---
+
+# TypeScript LCS
+
+- `strict: true`. Prohibido `any` nuevo; preferir `unknown` + narrowing.
+- Schemas Zod compartidos en `web/src/lib/validators/*`.
+- Queries/mutaciones solo en `web/src/services/*`, no en componentes UI.
+- Errores tipados; no exponer stack traces al cliente.
+- Preferir Server Components; `"use client"` solo con interactividad real.

@@ -1,0 +1,14 @@
+---
+description: Patrones UI del panel admin LCS
+globs: web/src/app/(admin)/**/*,web/src/components/admin/**/*
+alwaysApply: false
+---
+
+# Admin UI LCS
+
+- Rutas bajo `/admin`; middleware exige sesión + rol.
+- Listados con DataTable (buscar, ordenar, paginar, acciones).
+- Forms: React Hook Form + Zod; feedback con toast/modal confirm.
+- No queries Supabase directas en componentes; usar services + TanStack Query.
+- Ocultar módulo Usuarios si el rol no es `super_admin`.
+- Auditoría: solo `super_admin` y `admin`.

@@ -1,0 +1,14 @@
+---
+description: Convenciones Supabase LCS — migraciones, RLS, audit
+globs: web/supabase/**/*,web/src/lib/supabase/**/*
+alwaysApply: false
+---
+
+# Supabase LCS
+
+- Migraciones en `web/supabase/migrations/` con timestamp.
+- Toda tabla: RLS on + políticas explícitas.
+- Auditoría: `write_audit_event` SECURITY DEFINER; tabla append-only.
+- Rate limit: RPC `check_rate_limit` atómica (no memoria de proceso).
+- Naming: snake_case tablas/columnas; enums en Postgres para `role` y `status`.
+- Trigger `on_auth_user_created` → fila en `profiles`.

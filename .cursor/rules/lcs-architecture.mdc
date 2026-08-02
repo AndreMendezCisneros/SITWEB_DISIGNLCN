@@ -1,0 +1,16 @@
+---
+description: Arquitectura LCS — stack, público/admin, Supabase Auth, límites v1
+alwaysApply: true
+---
+
+# Arquitectura LCS
+
+- App en `web/`: Next.js App Router + TypeScript + Tailwind + Supabase.
+- Sitio público para todos; CMS en `/admin` con sesión Supabase.
+- Roles: `super_admin` | `admin` | `editor` | `marketing` | `viewer`.
+- Gestión de usuarios: **solo `super_admin`**.
+- Auth: Supabase Auth (no `/login` REST custom).
+- Datos: cliente Supabase + RLS; Route Handlers solo para secretos (Resend, rate-limit server).
+- No Headless CMS de terceros.
+- Fuera de v1: blog, testimonials, newsletter, `role_permissions` fina.
+- Marca LCS (negro/oro). P&M = referencia de estructura, no identidad.

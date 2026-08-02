@@ -1,0 +1,14 @@
+---
+description: UI pública LCS — marca negro/oro y composición
+globs: web/src/app/(public)/**/*,web/src/components/public/**/*
+alwaysApply: false
+---
+
+# Public UI LCS
+
+- Tokens: `--lcs-black`, `--lcs-charcoal`, `--lcs-gold`, `--lcs-gold-soft`, `--lcs-white`, `--lcs-muted`.
+- Hero full-bleed (no cards en hero). Brand LCS hero-level.
+- Tipografía display geométrica + body legible; no Inter/Roboto/Arial por defecto.
+- Motion intencional (hero, reveals, hover proyectos); sin ruido.
+- Solo contenido `published`. Mobile-first.
+- No clonar estilos P&M; P&M es solo flujo de secciones.

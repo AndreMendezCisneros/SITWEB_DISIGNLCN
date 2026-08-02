@@ -1,0 +1,51 @@
+# Dependencies
+node_modules/
+web/node_modules/
+
+# Next.js / build
+web/.next/
+web/out/
+web/build/
+web/coverage/
+web/.vercel/
+**/.turbo/
+
+# Env & secrets — NUNCA subir
+.env
+.env.*
+!.env.example
+web/.env
+web/.env.*
+!web/.env.example
+*.pem
+*.p12
+credentials*.json
+service-account*.json
+
+# Logs / OS
+*.log
+npm-debug.log*
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# TypeScript
+*.tsbuildinfo
+web/next-env.d.ts
+
+# IDE / local
+.idea/
+*.swp
+.vscode/*
+!.vscode/extensions.json
+
+# Cursor local noise (mantener rules/skills del proyecto)
+.cursor/projects/
+**/agent-transcripts/
+**/*.canvas.tsx
+
+# Nested accidental / copies
+/LCS/
+
+# Misc
+.pnpm-store/
