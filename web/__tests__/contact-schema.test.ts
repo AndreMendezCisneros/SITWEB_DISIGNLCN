@@ -12,6 +12,7 @@ describe("contactSchema", () => {
       message: "Necesito una cotización de obra.",
       website: "",
       startedAt: Date.now() - 2000,
+      turnstileToken: "",
     });
     assert.equal(parsed.success, true);
   });
@@ -21,7 +22,9 @@ describe("contactSchema", () => {
       name: "Ana",
       email: "ana@example.com",
       message: "Hola",
+      website: "",
       startedAt: Date.now(),
+      turnstileToken: "",
     });
     assert.equal(parsed.success, false);
   });
@@ -33,6 +36,7 @@ describe("contactSchema", () => {
       message: "Spam message long enough",
       website: "https://spam.example",
       startedAt: Date.now() - 5000,
+      turnstileToken: "dummy",
     });
     assert.equal(parsed.success, true);
   });

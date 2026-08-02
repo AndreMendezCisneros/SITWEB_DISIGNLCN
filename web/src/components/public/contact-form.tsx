@@ -5,15 +5,22 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { contactSchema, type ContactInput } from "@/lib/validators/contact";
 import { Button } from "@/components/ui/button";
+import {
+  TurnstileWidget,
+  resetTurnstile,
+} from "@/components/public/turnstile-widget";
 
 const fieldClass =
   "w-full border border-neutral-300 bg-white px-3 py-2.5 text-sm text-lcs-black focus:outline focus:outline-2 focus:outline-offset-1 focus:outline-lcs-gold";
+
+const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY?.trim() ?? "";
 
 export function ContactForm() {
   const [status, setStatus] = useState<
     "idle" | "ok" | "ok_partial" | "error" | "limited"
   >("idle");
   const [errorMsg, setErrorMsg] = useState("");
+  const [turnstileToken, setTurnstileToken] = useState("");
   const form = useForm<ContactInput>({
     resolver: zodResolver(contactSchema),
     defaultValues: {
@@ -24,19 +31,32 @@ export function ContactForm() {
       message: "",
       website: "",
       startedAt: Date.now(),
+      turnstileToken: "",
     },
   });
 
   async function onSubmit(values: ContactInput) {
     setStatus("idle");
     setErrorMsg("");
+
+    if (siteKey && !turnstileToken) {
+      setErrorMsg("Completa la verificación anti-robot antes de enviar.");
+      setStatus("error");
+      return;
+    }
+
     const res = await fetch("/api/contact", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(values),
+      body: JSON.stringify({
+        ...values,
+        turnstileToken: turnstileToken || values.turnstileToken || "",
+      }),
     });
     if (res.status === 429) {
       setStatus("limited");
+      resetTurnstile();
+      setTurnstileToken("");
       return;
     }
     const body = (await res.json().catch(() => null)) as {
@@ -47,9 +67,13 @@ export function ContactForm() {
     if (!res.ok) {
       setErrorMsg(body?.error ?? "No se pudo enviar el mensaje.");
       setStatus("error");
+      resetTurnstile();
+      setTurnstileToken("");
       return;
     }
     setStatus(body?.emailSent === false ? "ok_partial" : "ok");
+    setTurnstileToken("");
+    resetTurnstile();
     form.reset({
       name: "",
       company: "",
@@ -58,6 +82,7 @@ export function ContactForm() {
       message: "",
       website: "",
       startedAt: Date.now(),
+      turnstileToken: "",
     });
   }
 
@@ -118,6 +143,24 @@ export function ContactForm() {
         aria-hidden
         {...form.register("website")}
       />
+
+      {siteKey ? (
+        <div className="space-y-1">
+          <p className="text-xs text-neutral-500">Verificación de seguridad</p>
+          <TurnstileWidget
+            siteKey={siteKey}
+            onToken={(token) => setTurnstileToken(token)}
+            onExpire={() => setTurnstileToken("")}
+            onError={() => setTurnstileToken("")}
+          />
+        </div>
+      ) : (
+        <p className="text-xs text-neutral-400">
+          Anti-robot desactivado en este entorno (falta
+          NEXT_PUBLIC_TURNSTILE_SITE_KEY).
+        </p>
+      )}
+
       <Button type="submit" disabled={form.formState.isSubmitting}>
         {form.formState.isSubmitting ? "Enviando…" : "Enviar mensaje"}
       </Button>

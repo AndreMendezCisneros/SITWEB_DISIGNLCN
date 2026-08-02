@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { ContactForm } from "@/components/public/contact-form";
+import { OfficeMap } from "@/components/public/office-map";
 import { PageHero } from "@/components/public/page-hero";
 import { publicPageMetadata } from "@/lib/seo";
 import { getBannerByPlacement, getSiteSettings } from "@/services/content";
@@ -37,7 +38,7 @@ export default async function ContactoPage() {
         }
       />
 
-      <div className="mx-auto grid max-w-7xl gap-10 px-4 pb-20 md:grid-cols-2 md:px-8">
+      <div className="mx-auto grid max-w-7xl gap-10 px-4 pb-12 md:grid-cols-2 md:px-8">
         <div className="space-y-5 text-sm">
           <div>
             <p className="text-xs uppercase tracking-wide text-lcs-gold">
@@ -63,6 +64,10 @@ export default async function ContactoPage() {
           </div>
         </div>
         <ContactForm />
+      </div>
+
+      <div className="mx-auto max-w-7xl px-4 pb-20 md:px-8">
+        <OfficeMap address={settings.address} />
       </div>
     </main>
   );

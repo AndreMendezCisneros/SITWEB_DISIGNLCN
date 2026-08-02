@@ -71,7 +71,7 @@ Permisos: `web/src/lib/auth/roles.ts` (`canWriteModule`, `canMutateTable`, `navG
 
 | Endpoint | Uso |
 |----------|-----|
-| `POST /api/contact` | Formulario público (rate limit, honeypot, Resend) |
+| `POST /api/contact` | Formulario público (Turnstile + rate limit + honeypot + Resend) |
 | `POST /api/auth/login` | Login + rate limit + audit |
 | `POST /api/auth/logout` | `signOut` server |
 | `POST /api/admin/media/upload` | Upload optimizado (Sharp → WebP) |

@@ -9,6 +9,8 @@ export const contactSchema = z.object({
   /** Honeypot: cualquier valor se acepta y se descarta en silencio en la API. */
   website: z.string().max(200),
   startedAt: z.number().int().positive(),
+  /** Token Cloudflare Turnstile (puede ir vacío en dev sin keys). */
+  turnstileToken: z.string().max(2048),
 });
 
 export type ContactInput = z.infer<typeof contactSchema>;

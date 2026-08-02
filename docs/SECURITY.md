@@ -19,8 +19,10 @@
 | `CONTACT_TO_EMAIL` / `CONTACT_FROM_EMAIL` | Solo server |
 | `DIRECT_URL` | Solo local/CI para migraciones SQL — **nunca** en Vercel client |
 | `ALLOW_CONTENT_FALLBACK` | Opcional (`true`/`false`) |
+| `NEXT_PUBLIC_TURNSTILE_SITE_KEY` | Cliente (widget Turnstile) |
+| `TURNSTILE_SECRET_KEY` | **Solo server** (siteverify) |
 
-Nunca exponer service role al browser. No commitear `.env*`. Rotar keys si hay fuga.
+Nunca exponer service role ni el secret de Turnstile al browser. No commitear `.env*`. Rotar keys si hay fuga.
 
 ## Roles
 
@@ -39,10 +41,17 @@ Optimización Sharp → WebP (imágenes). Rate limit por usuario.
 
 ## Contacto
 
-- Rate limit IP + IP/email
-- Honeypot `website` (se acepta y se descarta en silencio)
-- Timing mínimo ~1.2s
-- Insert DB con service role; email Resend con `emailSent` en respuesta
+Defensa en profundidad:
+
+1. **Cloudflare Turnstile** — widget + verificación server (`siteverify`). Obligatorio en producción.
+2. Rate limit IP + IP/email
+3. Honeypot `website` (se acepta y se descarta en silencio)
+4. Timing mínimo ~1.2s
+5. Insert DB con service role; email Resend con `emailSent` en respuesta
+
+Crear el widget en [Cloudflare Dashboard → Turnstile](https://dash.cloudflare.com/).  
+Keys de prueba (siempre pasan): site `1x00000000000000000000AA`, secret `1x0000000000000000000000000000000AA`.  
+En desarrollo sin keys, Turnstile se omite con un warning en logs (no en producción).
 
 ## Rate limits
 

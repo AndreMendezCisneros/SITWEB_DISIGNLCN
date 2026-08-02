@@ -40,12 +40,18 @@ node scripts/apply-hardening.mjs
 1. DNS → Vercel.
 2. HTTPS Full (strict).
 3. WAF / Bot Fight; rate limit en `/api/contact` y rutas de login si el plan lo permite.
+4. **Turnstile (anti-bot contacto):**
+   - Dashboard → Turnstile → Add widget (dominios: `localhost` + dominio prod).
+   - Copiar Site Key → `NEXT_PUBLIC_TURNSTILE_SITE_KEY`
+   - Copiar Secret Key → `TURNSTILE_SECRET_KEY` (solo server / Vercel)
+   - En local de prueba rápida se pueden usar las [test keys](https://developers.cloudflare.com/turnstile/troubleshooting/testing/) de Cloudflare.
 
 ## 4. Resend
 
 1. Verificar dominio (no dejar forever `onboarding@resend.dev` en prod).
 2. `RESEND_API_KEY`, `CONTACT_TO_EMAIL`, `CONTACT_FROM_EMAIL`.
 3. Probar formulario: éxito total vs “mensaje recibido sin email”.
+4. Probar contacto **con** Turnstile OK y **sin** token / token inválido → 403.
 
 ## 5. Smoke test
 

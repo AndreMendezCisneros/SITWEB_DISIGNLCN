@@ -8,6 +8,10 @@ import {
   RATE_LIMITS,
 } from "@/lib/security/rate-limit";
 import { createRequestId, getClientIp } from "@/lib/security/request-id";
+import {
+  isTurnstileRequired,
+  verifyTurnstileToken,
+} from "@/lib/security/turnstile";
 import { createServiceClient } from "@/lib/supabase/server";
 import { contactSchema } from "@/lib/validators/contact";
 
@@ -34,7 +38,23 @@ export async function POST(request: Request) {
     return NextResponse.json({ ok: true, emailSent: false, requestId });
   }
   if (Date.now() - data.startedAt < 1200) {
-    return NextResponse.json({ error: "Envío demasiado rápido" }, { status: 400 });
+    return NextResponse.json(
+      { error: "Envío demasiado rápido" },
+      { status: 400 }
+    );
+  }
+
+  const turnstile = await verifyTurnstileToken(data.turnstileToken, ip);
+  if (!turnstile.ok) {
+    if (isTurnstileRequired() || !turnstile.skipped) {
+      return NextResponse.json(
+        {
+          error:
+            "No se pudo verificar que no eres un robot. Recarga e intenta de nuevo.",
+        },
+        { status: 403 }
+      );
+    }
   }
 
   const emailHash = createHash("sha256")
@@ -104,7 +124,8 @@ export async function POST(request: Request) {
     try {
       const resend = new Resend(apiKey);
       const { error } = await resend.emails.send({
-        from: process.env.CONTACT_FROM_EMAIL ?? "LCS Web <onboarding@resend.dev>",
+        from:
+          process.env.CONTACT_FROM_EMAIL ?? "LCS Web <onboarding@resend.dev>",
         to: [to],
         replyTo: data.email,
         subject: `Contacto web LCS — ${data.name}`,
@@ -139,13 +160,13 @@ export async function POST(request: Request) {
       company: data.company,
       emailSent,
       emailError,
+      turnstileSkipped: turnstile.skipped === true,
     },
     ip,
     userAgent,
     requestId,
   });
 
-  // Mensaje recibido en CMS aunque falle el correo; el cliente muestra aviso claro.
   return NextResponse.json({
     ok: true,
     requestId,
