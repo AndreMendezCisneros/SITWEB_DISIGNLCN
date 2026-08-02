@@ -3,10 +3,33 @@
 ## Capas
 
 1. Cloudflare (DNS, HTTPS, WAF / rate basics) — ops
-2. Middleware Next: auth workspaces con `getUser()`, headers, `X-Robots-Tag` en CMS
+2. Middleware Next: auth workspaces con `getUser()`, verificación JWT local (`jose` + `SUPABASE_JWT_SECRET`), idle 15 min, headers, `X-Robots-Tag` en CMS
 3. Zod en Route Handlers / Server Actions (allowlist de tablas)
 4. Supabase RLS en tablas de negocio
 5. Auditoría append-only (`audit_events` vía RPC solo `service_role`)
+
+## Login CMS
+
+- URL: `/admin/login` — UI split-screen (marca LCS + formulario).
+- Sesión: Supabase Auth (cookies SSR). No hay signup público; footer “solo por invitación”.
+- Forgot password: `POST /api/auth/forgot-password` → `resetPasswordForEmail` (respuesta genérica).
+- Tras login: cookie httpOnly `lcs_last_active` + JWT de Supabase en cookies SSR.
+
+## JWT
+
+Supabase emite el access token (HS256). Además de `getUser()`:
+
+- `web/src/lib/auth/jwt.ts` → `verifyAccessToken` con [`jose`](https://github.com/panva/jose).
+- Secret: `SUPABASE_JWT_SECRET` (Dashboard → Settings → API → JWT Secret). **Solo server.**
+- Producción + Supabase: secret obligatorio; si falta o el token no verifica → logout + `/admin/login?reason=jwt`.
+- Desarrollo sin secret: warning en logs y se omite la verificación local (sigue `getUser()`).
+
+## Idle (15 minutos)
+
+- Cookie httpOnly `lcs_last_active` (timestamp).
+- Middleware: si ausente o `now - last_active > 15m` → `signOut` + `/admin/login?reason=idle`.
+- Cliente `IdleLogout` en `WorkspaceShell`: actividad (`pointerdown`/`keydown`/`scroll`) → `POST /api/auth/activity` (throttle ~30s); al cumplir idle → logout.
+- Login setea la cookie; logout la borra. Auditoría: `auth.idle_logout`.
 
 ## Secretos
 
@@ -15,6 +38,7 @@
 | `NEXT_PUBLIC_SUPABASE_URL` | Cliente + server |
 | `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Cliente + server (RLS) |
 | `SUPABASE_SERVICE_ROLE_KEY` | **Solo server** |
+| `SUPABASE_JWT_SECRET` | **Solo server** (verificación JWT) |
 | `RESEND_API_KEY` | Solo server |
 | `CONTACT_TO_EMAIL` / `CONTACT_FROM_EMAIL` | Solo server |
 | `DIRECT_URL` | Solo local/CI para migraciones SQL — **nunca** en Vercel client |
@@ -22,7 +46,7 @@
 | `NEXT_PUBLIC_TURNSTILE_SITE_KEY` | Cliente (widget Turnstile) |
 | `TURNSTILE_SECRET_KEY` | **Solo server** (siteverify) |
 
-Nunca exponer service role ni el secret de Turnstile al browser. No commitear `.env*`. Rotar keys si hay fuga.
+Nunca exponer service role, JWT secret ni el secret de Turnstile al browser. No commitear `.env*`. Rotar keys si hay fuga.
 
 ## Roles
 
@@ -67,7 +91,7 @@ HSTS vía Cloudflare en producción.
 
 1. Migración `20260802160000_prod_hardening.sql` aplicada  
 2. Signup público OFF  
-3. Variables Vercel (sin `DIRECT_URL` innecesario)  
-4. Smoke por rol (skill `lcs-release-checklist`)  
+3. Variables Vercel (incl. `SUPABASE_JWT_SECRET`; sin `DIRECT_URL` innecesario)  
+4. Smoke por rol (skill `lcs-release-checklist`) + idle 15 min + login UI  
 5. Formulario contacto con/sin Resend  
-6. Upload multimedia con rol editor/marketing  
+6. Upload multimedia con rol editor/marketing

@@ -32,8 +32,9 @@ node scripts/apply-hardening.mjs
 
 1. Importar repo; **Root Directory = `web`**.
 2. Variables desde `web/.env.example` (nunca subir `.env.local`).
-3. `NEXT_PUBLIC_SITE_URL` = URL de producción.
-4. Dominio custom → Vercel.
+3. Incluir `SUPABASE_JWT_SECRET` (Settings → API → JWT Secret) en Vercel — obligatorio en prod.
+4. `NEXT_PUBLIC_SITE_URL` = URL de producción.
+5. Dominio custom → Vercel.
 
 ## 3. Cloudflare (recomendado)
 
@@ -56,7 +57,10 @@ node scripts/apply-hardening.mjs
 ## 5. Smoke test
 
 - Público: home, nosotros, servicios, proyectos, contacto.
-- Login cada rol → workspace correcto; viewer no edita.
+- Login `/admin/login` (UI split): cada rol → workspace correcto; viewer no edita.
+- Forgot password: mensaje genérico sin filtrar existencia de email.
+- Idle: tras ~15 min sin actividad en CMS → redirect login `?reason=idle`.
+- JWT: con `SUPABASE_JWT_SECRET` incorrecto en prod → no debe mantener sesión workspace.
 - Crear banner con placement; singleton home.
 - Upload imagen → aparece en Multimedia / picker.
 - Mensaje de contacto → fila en Mensajes + correo (si Resend OK).

@@ -62,18 +62,26 @@ Permisos: `web/src/lib/auth/roles.ts` (`canWriteModule`, `canMutateTable`, `navG
 
 ## Autenticación
 
-1. Middleware (`web/src/lib/supabase/middleware.ts`): `getUser()` en rutas de workspace.
-2. Layouts / `requireWorkspace` / `requireModuleAccess`.
-3. Server actions: `requireProfile` + `canMutateTable` + Zod allowlist.
-4. RLS Postgres: `can_write_content()` excluye `viewer`.
+1. Middleware (`web/src/lib/supabase/middleware.ts`):
+   - `getUser()` en rutas de workspace.
+   - Verificación JWT del access token con `jose` (`web/src/lib/auth/jwt.ts` + `SUPABASE_JWT_SECRET`).
+   - Idle 15 min vía cookie `lcs_last_active` (`web/src/lib/auth/idle.ts`).
+2. Cliente CMS: `IdleLogout` en `WorkspaceShell` (ping `/api/auth/activity` + logout local).
+3. Layouts / `requireWorkspace` / `requireModuleAccess`.
+4. Server actions: `requireProfile` + `canMutateTable` + Zod allowlist.
+5. RLS Postgres: `can_write_content()` excluye `viewer`.
+
+Login UI: `/admin/login` (split-screen LCS). Sin signup público; forgot password vía API.
 
 ## APIs Route Handlers
 
 | Endpoint | Uso |
 |----------|-----|
 | `POST /api/contact` | Formulario público (Turnstile + rate limit + honeypot + Resend) |
-| `POST /api/auth/login` | Login + rate limit + audit |
-| `POST /api/auth/logout` | `signOut` server |
+| `POST /api/auth/login` | Login + rate limit + audit + cookie idle |
+| `POST /api/auth/logout` | `signOut` + borra idle (`?reason=idle` → audit idle) |
+| `POST /api/auth/activity` | Renueva `lcs_last_active` (sesión activa) |
+| `POST /api/auth/forgot-password` | Reset email Supabase + rate limit |
 | `POST /api/admin/media/upload` | Upload optimizado (Sharp → WebP) |
 | Invite usuarios | vía services + service role (solo super_admin) |
 

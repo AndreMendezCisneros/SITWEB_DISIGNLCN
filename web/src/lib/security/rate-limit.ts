@@ -92,6 +92,9 @@ export const RATE_LIMITS = {
   contactIp: { limit: 20, windowSec: 60 * 60 },
   loginIpEmail: { limit: 10, windowSec: 15 * 60 },
   loginIp: { limit: 50, windowSec: 60 * 60 },
+  forgotPasswordIpEmail: { limit: 5, windowSec: 15 * 60 },
+  forgotPasswordIp: { limit: 20, windowSec: 60 * 60 },
+  authActivityIp: { limit: 120, windowSec: 10 * 60 },
   mediaUpload: { limit: 60, windowSec: 60 * 60 },
   adminMutations: { limit: 300, windowSec: 10 * 60 },
 } as const;

@@ -1,6 +1,7 @@
 import { createHash } from "crypto";
 import { NextResponse } from "next/server";
 import { writeAuditEvent } from "@/lib/audit/write-audit-event";
+import { setIdleCookie } from "@/lib/auth/idle";
 import {
   enforceRateLimit,
   RATE_LIMITS,
@@ -101,7 +102,9 @@ export async function POST(request: Request) {
       requestId,
     });
 
-    return NextResponse.json({ ok: true, role, home });
+    const res = NextResponse.json({ ok: true, role, home });
+    setIdleCookie(res);
+    return res;
   } catch {
     return NextResponse.json(
       { error: "Auth no configurado. Define variables Supabase." },

@@ -1,3 +1,4 @@
+import { IdleLogout } from "@/components/cms/idle-logout";
 import { WorkspaceNav } from "@/components/cms/workspace-nav";
 import { navGroupsForRole, type WorkspaceDef } from "@/lib/auth/roles";
 import { ROLE_LABELS, type AppRole } from "@/types/database";
@@ -23,7 +24,7 @@ export function WorkspaceShell({
 
   return (
     <div className="flex h-dvh max-h-dvh overflow-hidden bg-[#f5f5f5] text-neutral-900">
-      {/* Menú fijo: no se mueve al hacer scroll del contenido */}
+      <IdleLogout />
       <aside className="hidden h-dvh w-[260px] shrink-0 flex-col bg-lcs-black text-lcs-white md:flex lg:w-[280px]">
         <div className="shrink-0 px-5 pb-4 pt-6">
           <div className="flex items-center gap-3">
@@ -53,7 +54,6 @@ export function WorkspaceShell({
         </div>
       </aside>
 
-      {/* Solo esta columna hace scroll */}
       <div className="flex min-h-0 min-w-0 flex-1 flex-col overflow-y-auto">
         <header className="sticky top-0 z-20 flex flex-wrap items-center justify-between gap-3 border-b border-black/[0.04] bg-[#f5f5f5]/95 px-4 py-4 backdrop-blur md:px-6 lg:px-8">
           <div className="min-w-0">

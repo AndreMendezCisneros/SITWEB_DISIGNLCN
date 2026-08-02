@@ -1,78 +1,63 @@
-"use client";
-
-import { useState } from "react";
-import { useRouter } from "next/navigation";
-import { Button } from "@/components/ui/button";
+import { Suspense } from "react";
+import { AdminLoginForm } from "@/components/cms/admin-login-form";
 
 export default function AdminLoginPage() {
-  const router = useRouter();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
-
-  async function onSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    setLoading(true);
-    setError("");
-    const res = await fetch("/api/auth/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password }),
-    });
-    const body = (await res.json().catch(() => null)) as {
-      error?: string;
-      home?: string;
-    } | null;
-    setLoading(false);
-    if (res.status === 429) {
-      setError("Demasiados intentos. Espera e intenta de nuevo.");
-      return;
-    }
-    if (!res.ok) {
-      setError(body?.error ?? "No se pudo iniciar sesión");
-      return;
-    }
-    router.push(body?.home ?? "/admin");
-    router.refresh();
-  }
-
   return (
-    <div className="flex min-h-screen items-center justify-center bg-lcs-black px-4">
-      <form
-        onSubmit={onSubmit}
-        className="w-full max-w-md border border-white/10 bg-lcs-charcoal p-8"
+    <div className="flex min-h-screen bg-[#f7f7f5] text-neutral-900">
+      {/* Panel marca — desktop */}
+      <aside
+        className="relative hidden w-[48%] overflow-hidden bg-lcs-black lg:flex lg:flex-col lg:justify-center"
+        aria-hidden
       >
-        <p className="font-display text-3xl text-lcs-gold">LCS</p>
-        <p className="mt-2 text-sm text-lcs-muted">
-          Acceso al panel según tu rol (Admin, Editor, Marketing o Consulta)
-        </p>
-        <label className="mt-8 block text-sm text-lcs-white">
-          Correo
-          <input
-            className="mt-1 w-full border border-white/20 bg-lcs-black px-3 py-2 text-lcs-white"
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </label>
-        <label className="mt-4 block text-sm text-lcs-white">
-          Contraseña
-          <input
-            className="mt-1 w-full border border-white/20 bg-lcs-black px-3 py-2 text-lcs-white"
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-            minLength={8}
-          />
-        </label>
-        {error ? <p className="mt-4 text-sm text-red-400">{error}</p> : null}
-        <Button type="submit" className="mt-6 w-full" disabled={loading}>
-          {loading ? "Ingresando…" : "Ingresar"}
-        </Button>
-      </form>
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(ellipse 70% 55% at 40% 45%, rgba(201,162,39,0.28), transparent 60%), radial-gradient(ellipse 50% 40% at 80% 80%, rgba(201,162,39,0.12), transparent 50%), linear-gradient(155deg, #0a0a0a 0%, #141414 50%, #0a0a0a 100%)",
+          }}
+        />
+        <div
+          className="absolute inset-0 opacity-[0.08]"
+          style={{
+            backgroundImage:
+              "linear-gradient(rgba(201,162,39,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(201,162,39,0.5) 1px, transparent 1px)",
+            backgroundSize: "56px 56px",
+          }}
+        />
+        {/* Onda hacia el formulario */}
+        <svg
+          className="absolute bottom-0 right-0 top-0 h-full w-24 translate-x-1/2 text-[#f7f7f5]"
+          viewBox="0 0 80 800"
+          preserveAspectRatio="none"
+          fill="currentColor"
+        >
+          <path d="M40 0C55 80 10 160 40 240C70 320 15 400 40 480C65 560 20 640 40 720C50 760 45 780 40 800H80V0H40Z" />
+        </svg>
+        <div className="relative z-10 px-12 xl:px-16">
+          <p className="font-display text-sm uppercase tracking-[0.35em] text-lcs-gold">
+            Luque Construcción y Servicios
+          </p>
+          <p className="mt-8 font-display text-6xl uppercase leading-none tracking-[0.12em] text-lcs-white xl:text-7xl">
+            Welcome
+          </p>
+          <p className="mt-6 max-w-sm text-sm leading-relaxed text-white/60">
+            Panel CMS — administración de contenido, proyectos y multimedia.
+          </p>
+        </div>
+      </aside>
+
+      {/* Formulario */}
+      <main className="relative flex flex-1 flex-col items-center justify-center px-6 py-12 sm:px-10">
+        <div className="mb-10 text-center lg:hidden">
+          <p className="font-display text-2xl text-lcs-gold">LCS</p>
+          <p className="mt-1 text-xs uppercase tracking-[0.25em] text-neutral-500">
+            Welcome
+          </p>
+        </div>
+        <Suspense fallback={<p className="text-sm text-neutral-500">Cargando…</p>}>
+          <AdminLoginForm />
+        </Suspense>
+      </main>
     </div>
   );
 }

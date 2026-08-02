@@ -1,6 +1,13 @@
 import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 import {
+  clearIdleCookie,
+  IDLE_COOKIE,
+  isIdleExpired,
+  setIdleCookie,
+} from "@/lib/auth/idle";
+import { verifyAccessToken } from "@/lib/auth/jwt";
+import {
   homeForRole,
   isWorkspacePath,
   resolveWorkspaceRedirect,
@@ -8,6 +15,32 @@ import {
 } from "@/lib/auth/roles";
 import { isSupabaseConfigured } from "@/lib/env";
 import type { AppRole } from "@/types/database";
+
+async function forceLoginRedirect(
+  request: NextRequest,
+  supabaseResponse: NextResponse,
+  supabase: {
+    auth: { signOut: () => Promise<unknown> };
+  },
+  reason?: "idle" | "jwt",
+) {
+  try {
+    await supabase.auth.signOut();
+  } catch {
+    // ignore
+  }
+  const redirect = request.nextUrl.clone();
+  redirect.pathname = "/admin/login";
+  if (reason) redirect.searchParams.set("reason", reason);
+  else redirect.searchParams.set("next", request.nextUrl.pathname);
+  const res = NextResponse.redirect(redirect);
+  clearIdleCookie(res);
+  // Copiar cookies de signOut si las hubo
+  supabaseResponse.cookies.getAll().forEach((c) => {
+    res.cookies.set(c.name, c.value);
+  });
+  return res;
+}
 
 export async function updateSession(request: NextRequest) {
   const path = request.nextUrl.pathname;
@@ -64,6 +97,26 @@ export async function updateSession(request: NextRequest) {
     return supabaseResponse;
   }
 
+  // JWT local (jose) + idle 15 min — solo fuera de la página de login.
+  if (!isLogin) {
+    const {
+      data: { session },
+    } = await supabase.auth.getSession();
+    const accessToken = session?.access_token;
+    if (accessToken) {
+      const jwt = await verifyAccessToken(accessToken);
+      if (!jwt.ok) {
+        return forceLoginRedirect(request, supabaseResponse, supabase, "jwt");
+      }
+    }
+
+    const lastActive = request.cookies.get(IDLE_COOKIE)?.value;
+    if (isIdleExpired(lastActive)) {
+      return forceLoginRedirect(request, supabaseResponse, supabase, "idle");
+    }
+    setIdleCookie(supabaseResponse);
+  }
+
   const { data: profile } = await supabase
     .from("profiles")
     .select("role,is_active")
@@ -95,7 +148,6 @@ export async function updateSession(request: NextRequest) {
     return NextResponse.redirect(redirect);
   }
 
-  // noindex en workspaces CMS
   if (workspaceFromPath(path)) {
     supabaseResponse.headers.set("X-Robots-Tag", "noindex, nofollow");
   }

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { BackhoeScroll } from "@/components/public/backhoe-scroll";
 
 const links = [
   { href: "/", label: "Inicio" },
@@ -37,12 +38,15 @@ export function SiteHeader() {
             </Link>
           ))}
         </nav>
-        <Link
-          href="/contacto"
-          className="border border-lcs-gold px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-lcs-gold transition hover:bg-lcs-gold hover:text-lcs-black"
-        >
-          Cotizar
-        </Link>
+        <div className="flex shrink-0 items-center gap-2 sm:gap-3">
+          <Link
+            href="/contacto"
+            className="border border-lcs-gold px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-lcs-gold transition hover:bg-lcs-gold hover:text-lcs-black"
+          >
+            Cotizar
+          </Link>
+          <BackhoeScroll />
+        </div>
       </div>
     </header>
   );
