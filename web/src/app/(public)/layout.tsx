@@ -1,5 +1,6 @@
 import { SiteFooter } from "@/components/public/site-footer";
 import { SiteHeader } from "@/components/public/site-header";
+import { WhatsAppFloat } from "@/components/public/whatsapp-float";
 import { getSiteSettings } from "@/services/content";
 
 export default async function PublicLayout({
@@ -13,6 +14,7 @@ export default async function PublicLayout({
       <SiteHeader />
       {children}
       <SiteFooter settings={settings} />
+      <WhatsAppFloat />
     </div>
   );
 }
