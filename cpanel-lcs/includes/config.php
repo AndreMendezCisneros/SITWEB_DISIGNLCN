@@ -1,0 +1,119 @@
+<?php
+declare(strict_types=1);
+
+/**
+ * Configuración LCS — sitio PHP para cPanel
+ * Sube toda la carpeta cpanel-lcs al public_html (o subcarpeta).
+ */
+
+define('SITE_NAME', 'Luque Construcción y Servicios');
+define('SITE_SHORT', 'LCS');
+define('SITE_EMAIL', 'contactenos@lcs.pe');
+define('SITE_PHONE', '917 697 815');
+define('SITE_WHATSAPP', '51917697815');
+define('SITE_ADDRESS', 'Av. Manuel Olguín 335, Edificio Link Tower — Oficina 901, Surco');
+define('SITE_MANAGER', 'Jorge Luis Luque Solis');
+define('SITE_MAP_LAT', '-12.11135');
+define('SITE_MAP_LNG', '-76.99105');
+
+/** Destinatario de cotizaciones (cámbialo si hace falta) */
+define('CONTACT_TO', 'contactenos@lcs.pe');
+define('CONTACT_FROM_NAME', 'LCS Web');
+/** Si mail() falla en tu hosting, deja false y los mensajes se guardan en /mensajes */
+define('CONTACT_TRY_MAIL', true);
+
+/** Base URL relativa ('' si está en la raíz de public_html) */
+define('BASE_PATH', '');
+
+date_default_timezone_set('America/Lima');
+
+function base_url(string $path = ''): string
+{
+    $base = rtrim(BASE_PATH, '/');
+    $path = ltrim($path, '/');
+    if ($path === '') {
+        return $base === '' ? '/' : $base . '/';
+    }
+    return ($base === '' ? '' : $base) . '/' . $path;
+}
+
+function e(?string $value): string
+{
+    return htmlspecialchars((string) $value, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');
+}
+
+function format_money(?float $amount): string
+{
+    if ($amount === null) {
+        return '—';
+    }
+    return 'S/ ' . number_format($amount, 2, '.', ',');
+}
+
+function current_page(): string
+{
+    $script = basename($_SERVER['SCRIPT_NAME'] ?? 'index.php');
+    return pathinfo($script, PATHINFO_FILENAME);
+}
+
+function is_active(string $page): string
+{
+    return current_page() === $page ? ' is-active' : '';
+}
+
+/** Extrae ID de YouTube desde URL o ID suelto. */
+function youtube_id(?string $value): ?string
+{
+    if ($value === null) {
+        return null;
+    }
+    $value = trim($value);
+    if ($value === '') {
+        return null;
+    }
+    if (preg_match('/^[a-zA-Z0-9_-]{11}$/', $value)) {
+        return $value;
+    }
+    if (preg_match('/(?:youtu\.be\/|v=|embed\/|shorts\/)([a-zA-Z0-9_-]{11})/', $value, $m)) {
+        return $m[1];
+    }
+    return null;
+}
+
+/**
+ * Renderiza un video (archivo local MP4/WebM o YouTube).
+ * @param array{title?:string,file?:string,youtube?:string,poster?:string} $video
+ */
+function render_video(array $video, string $class = ''): void
+{
+    $title = $video['title'] ?? 'Video';
+    $poster = $video['poster'] ?? '';
+    $file = $video['file'] ?? '';
+    $yt = youtube_id($video['youtube'] ?? null);
+    $classAttr = trim('video-frame ' . $class);
+
+    if ($file !== '') {
+        $src = base_url($file);
+        $posterAttr = $poster !== '' ? ' poster="' . e(base_url($poster)) . '"' : '';
+        echo '<div class="' . e($classAttr) . '">';
+        echo '<video controls preload="metadata" playsinline' . $posterAttr . ' title="' . e($title) . '">';
+        echo '<source src="' . e($src) . '" type="video/mp4">';
+        echo 'Tu navegador no soporta video HTML5.';
+        echo '</video></div>';
+        return;
+    }
+
+    if ($yt !== null) {
+        $embed = 'https://www.youtube.com/embed/' . rawurlencode($yt) . '?rel=0&modestbranding=1';
+        echo '<div class="' . e($classAttr) . '">';
+        echo '<iframe src="' . e($embed) . '" title="' . e($title) . '" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+        echo '</div>';
+        return;
+    }
+
+    echo '<div class="' . e($classAttr) . ' video-frame--empty">';
+    if ($poster !== '') {
+        echo '<img src="' . e(base_url($poster)) . '" alt="' . e($title) . '">';
+    }
+    echo '<p>Video pendiente</p></div>';
+}

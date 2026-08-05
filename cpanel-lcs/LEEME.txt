@@ -1,0 +1,75 @@
+# Sitio LCS para cPanel (PHP) — listo para subir
+
+Este sitio corre en cPanel normal: PHP + HTML + CSS + JS + imágenes/videos.
+NO necesita Node.js, npm, Vercel ni "Setup Node.js App".
+
+## Qué subes
+
+Carpeta: `cpanel-lcs`
+
+- Páginas `.php` (inicio, nosotros, servicios, proyectos, videos, clientes, etc.)
+- CSS / JS en `assets/`
+- Imágenes en `assets/img/`
+- Video del inicio: `assets/video/hero-lcs.mp4` (~5 MB) — se reproduce solo
+- Formulario de contacto: guarda mensajes en `mensajes/` y puede enviar correo con `mail()`
+- `.htaccess` con redirecciones y tipo MIME de video
+
+## Cómo subir a cPanel (recomendado)
+
+### Opción A — ZIP (más fácil)
+
+1. Usa el archivo `LCS-cpanel.zip` (o comprime la carpeta `cpanel-lcs`).
+2. Entra a cPanel → **File Manager** → `public_html`.
+3. Sube el ZIP.
+4. Clic derecho → **Extract**.
+5. Asegúrate de que `index.php` quede **directo** en `public_html`
+   (no dentro de otra carpeta `cpanel-lcs`).
+6. Permisos de `mensajes/`: 755 o 775 (escritura).
+
+### Opción B — FTP
+
+Sube TODO el contenido de `cpanel-lcs` a `public_html`.
+
+## Video en el inicio
+
+- Archivo: `assets/video/hero-lcs.mp4`
+- Formato: MP4 (lo entiende cualquier hosting cPanel)
+- Peso: ~5 MB (pasa el límite típico de File Manager)
+- Se muestra con `<video autoplay muted loop>` (HTML5, sin Node)
+
+Si el File Manager rechaza el video por tamaño:
+1. Sube el resto del sitio en ZIP.
+2. Luego sube solo `hero-lcs.mp4` por FTP a `public_html/assets/video/`.
+
+## Si el sitio va en subcarpeta
+
+Ejemplo: `tudominio.com/lcs/`
+
+Edita `includes/config.php`:
+
+```php
+define('BASE_PATH', '/lcs');
+```
+
+## Correo del formulario
+
+En `includes/config.php`:
+
+- `CONTACT_TO` = correo destino
+- Los mensajes también se guardan en `mensajes/` (por si `mail()` del hosting falla)
+
+## Checklist rápido
+
+- [ ] `index.php` en la raíz de `public_html`
+- [ ] Carpeta `assets/video/hero-lcs.mp4` existe
+- [ ] Carpeta `mensajes/` con permiso de escritura
+- [ ] Abres el dominio y carga el inicio con video
+- [ ] Pruebas `/contacto.php` y envías un mensaje
+
+## Qué NO hace falta
+
+- Node.js / npm
+- Composer
+- Supabase
+- Vercel
+- Base de datos MySQL (el sitio público funciona sin ella)

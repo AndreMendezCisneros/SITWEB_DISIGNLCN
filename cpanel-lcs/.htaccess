@@ -1,0 +1,27 @@
+# LCS — PHP / cPanel
+Options -Indexes
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Forzar HTTPS (descomenta en producción si tienes SSL)
+  # RewriteCond %{HTTPS} off
+  # RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+  # Redirigir index.php → /
+  RewriteCond %{THE_REQUEST} /index\.php[\s?] [NC]
+  RewriteRule ^index\.php$ / [R=301,L]
+
+  # Bloquear acceso directo a includes y mensajes
+  RewriteRule ^(includes|mensajes)/ - [F,L]
+</IfModule>
+
+# Tipos MIME útiles
+AddType image/webp .webp
+AddType video/mp4 .mp4
+AddDefaultCharset UTF-8
+
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType video/mp4 "access plus 30 days"
+</IfModule>
