@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+# Carpetas y scripts privados
+Disallow: /includes/
+Disallow: /mensajes/
+Disallow: /enviar.php
+Disallow: /enviar-cotizacion.php
+
+Sitemap: https://lcs.pe/sitemap.xml
