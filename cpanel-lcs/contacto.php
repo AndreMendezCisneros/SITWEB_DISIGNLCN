@@ -14,15 +14,89 @@ $status = isset($_GET['status']) ? (string) $_GET['status'] : '';
 </section>
 
 <section class="section section-black">
-  <div class="container grid-2 md-2">
-    <div>
-      <div class="info-card" style="margin-bottom:1rem">
+  <div class="container contact-layout">
+    <?php if ($status === 'ok'): ?>
+      <div class="alert alert-ok">Mensaje recibido. Te contactaremos pronto en <?= e(SITE_EMAIL) ?>.</div>
+    <?php elseif ($status === 'error'): ?>
+      <div class="alert alert-error">No pudimos enviar el mensaje. Revisa los datos e inténtalo de nuevo.</div>
+    <?php elseif ($status === 'spam'): ?>
+      <div class="alert alert-error">Envío rechazado por seguridad. Intenta nuevamente.</div>
+    <?php endif; ?>
+
+    <div class="contact-cards">
+      <div class="info-card contact-office">
         <p class="eyebrow">Oficina</p>
-        <p style="margin-top:0.75rem"><?= e(SITE_ADDRESS) ?></p>
-        <p style="margin-top:0.75rem"><a href="mailto:<?= e(SITE_EMAIL) ?>"><?= e(SITE_EMAIL) ?></a></p>
-        <p style="margin-top:0.5rem"><a href="tel:+51<?= e(preg_replace('/\D+/', '', SITE_PHONE)) ?>"><?= e(SITE_PHONE) ?></a></p>
-        <p style="margin-top:0.5rem"><a href="https://wa.me/<?= e(SITE_WHATSAPP) ?>" target="_blank" rel="noopener">WhatsApp</a></p>
+        <ul class="contact-details">
+          <li>
+            <span class="contact-label">Dirección</span>
+            <p><?= e(SITE_ADDRESS) ?></p>
+          </li>
+          <li>
+            <span class="contact-label">Correo electrónico</span>
+            <p><a href="mailto:<?= e(SITE_EMAIL) ?>"><?= e(SITE_EMAIL) ?></a></p>
+          </li>
+          <li>
+            <span class="contact-label">Teléfono / celular</span>
+            <p><a href="tel:+51<?= e(preg_replace('/\D+/', '', SITE_PHONE)) ?>"><?= e(SITE_PHONE) ?></a></p>
+          </li>
+          <li>
+            <span class="contact-label">WhatsApp</span>
+            <p><a href="https://wa.me/<?= e(SITE_WHATSAPP) ?>" target="_blank" rel="noopener">Escribir por WhatsApp (+51 <?= e(SITE_PHONE) ?>)</a></p>
+          </li>
+          <li>
+            <span class="contact-label">Contacto / gerencia</span>
+            <p><?= e(SITE_MANAGER) ?></p>
+          </li>
+          <li>
+            <span class="contact-label">Horario de atención</span>
+            <p>Lunes a viernes, 9:00 a. m. – 6:00 p. m.</p>
+          </li>
+        </ul>
       </div>
+
+      <form class="info-card contact-form" method="post" action="<?= e(base_url('enviar.php')) ?>" novalidate>
+        <div class="honeypot" aria-hidden="true">
+          <label for="website">Sitio web</label>
+          <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+        </div>
+        <input type="hidden" name="started_at" value="<?= e((string) round(microtime(true) * 1000)) ?>">
+
+        <div class="form-grid two">
+          <div>
+            <label for="name">Nombre *</label>
+            <input id="name" name="name" type="text" required minlength="2" maxlength="120" autocomplete="name">
+          </div>
+          <div>
+            <label for="company">Empresa</label>
+            <input id="company" name="company" type="text" maxlength="160" autocomplete="organization">
+          </div>
+        </div>
+
+        <div class="form-grid two" style="margin-top:1rem">
+          <div>
+            <label for="email">Correo *</label>
+            <input id="email" name="email" type="email" required maxlength="160" autocomplete="email">
+          </div>
+          <div>
+            <label for="phone">Teléfono</label>
+            <input id="phone" name="phone" type="tel" maxlength="40" autocomplete="tel">
+          </div>
+        </div>
+
+        <div style="margin-top:1rem">
+          <label for="message">Mensaje *</label>
+          <textarea id="message" name="message" rows="6" required minlength="10" maxlength="4000"></textarea>
+        </div>
+
+        <p class="meta" style="margin-top:1rem">El mensaje se enviará a <?= e(CONTACT_TO) ?>.</p>
+
+        <div class="actions">
+          <button class="btn btn-gold" type="submit">Enviar mensaje</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="contact-map">
       <iframe
         class="map-frame"
         title="Oficina LCS"
@@ -33,55 +107,6 @@ $status = isset($_GET['status']) ? (string) $_GET['status'] : '';
       <p class="meta" style="margin-top:0.75rem">
         <a href="https://www.google.com/maps?q=<?= e(SITE_MAP_LAT) ?>,<?= e(SITE_MAP_LNG) ?>" target="_blank" rel="noopener">Abrir en Google Maps</a>
       </p>
-    </div>
-
-    <div>
-      <?php if ($status === 'ok'): ?>
-        <div class="alert alert-ok">Mensaje recibido. Te contactaremos pronto.</div>
-      <?php elseif ($status === 'error'): ?>
-        <div class="alert alert-error">No pudimos enviar el mensaje. Revisa los datos e inténtalo de nuevo.</div>
-      <?php elseif ($status === 'spam'): ?>
-        <div class="alert alert-error">Envío rechazado por seguridad. Intenta nuevamente.</div>
-      <?php endif; ?>
-
-      <form class="info-card" method="post" action="<?= e(base_url('enviar.php')) ?>" novalidate>
-        <div class="honeypot" aria-hidden="true">
-          <label for="website">Sitio web</label>
-          <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
-        </div>
-        <input type="hidden" name="started_at" value="<?= e((string) round(microtime(true) * 1000)) ?>">
-
-        <div class="form-grid two">
-          <div>
-            <label for="name">Nombre *</label>
-            <input id="name" name="name" type="text" required minlength="2" maxlength="120">
-          </div>
-          <div>
-            <label for="company">Empresa</label>
-            <input id="company" name="company" type="text" maxlength="160">
-          </div>
-        </div>
-
-        <div class="form-grid two" style="margin-top:1rem">
-          <div>
-            <label for="email">Correo *</label>
-            <input id="email" name="email" type="email" required maxlength="160">
-          </div>
-          <div>
-            <label for="phone">Teléfono</label>
-            <input id="phone" name="phone" type="text" maxlength="40">
-          </div>
-        </div>
-
-        <div style="margin-top:1rem">
-          <label for="message">Mensaje *</label>
-          <textarea id="message" name="message" rows="6" required minlength="10" maxlength="4000"></textarea>
-        </div>
-
-        <div class="actions">
-          <button class="btn btn-gold" type="submit">Enviar mensaje</button>
-        </div>
-      </form>
     </div>
   </div>
 </section>

@@ -133,7 +133,7 @@ if ($homeFeatured === null && $homeVideos !== []) {
     <div class="section-head">
       <p class="eyebrow">Videos</p>
       <h2 class="display">Así trabajamos en obra</h2>
-      <p class="muted" style="margin-top:0.85rem;max-width:40rem">Mira el trabajo de LCS en campo. Puedes subir MP4 a cPanel o enlazar YouTube.</p>
+      <p class="muted" style="margin-top:0.85rem;max-width:40rem">Mira el trabajo de LCS en campo.</p>
     </div>
     <?php render_video($homeFeatured, 'video-frame--hero'); ?>
     <?php if (count($homeVideos) > 1): ?>
@@ -162,10 +162,19 @@ if ($homeFeatured === null && $homeVideos !== []) {
     </div>
     <div class="grid-3">
       <?php foreach (array_slice($services, 0, 6) as $service): ?>
-        <div class="service-card">
+        <article class="service-card">
+          <?php if (!empty($service['image'])): ?>
+            <img
+              src="<?= e(base_url($service['image'])) ?>"
+              alt="<?= e($service['title']) ?>"
+              loading="lazy"
+              width="640"
+              height="400"
+            >
+          <?php endif; ?>
           <h3><?= e($service['title']) ?></h3>
-          <p style="color:#555"><?= e($service['description']) ?></p>
-        </div>
+          <p class="service-card-desc"><?= e($service['description']) ?></p>
+        </article>
       <?php endforeach; ?>
     </div>
     <div class="actions">

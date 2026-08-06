@@ -14,6 +14,15 @@ function redirect_contact(string $status): void
     exit;
 }
 
+/** Longitud segura sin depender de la extensión mbstring. */
+function str_len(string $value): int
+{
+    if (function_exists('mb_strlen')) {
+        return (int) mb_strlen($value, 'UTF-8');
+    }
+    return strlen($value);
+}
+
 $website = trim((string) ($_POST['website'] ?? ''));
 $startedAt = (int) ($_POST['started_at'] ?? 0);
 $now = (int) round(microtime(true) * 1000);
@@ -29,14 +38,14 @@ $phone = trim((string) ($_POST['phone'] ?? ''));
 $message = trim((string) ($_POST['message'] ?? ''));
 
 if (
-    mb_strlen($name) < 2 ||
-    mb_strlen($name) > 120 ||
+    str_len($name) < 2 ||
+    str_len($name) > 120 ||
     !filter_var($email, FILTER_VALIDATE_EMAIL) ||
-    mb_strlen($email) > 160 ||
-    mb_strlen($message) < 10 ||
-    mb_strlen($message) > 4000 ||
-    mb_strlen($company) > 160 ||
-    mb_strlen($phone) > 40
+    str_len($email) > 160 ||
+    str_len($message) < 10 ||
+    str_len($message) > 4000 ||
+    str_len($company) > 160 ||
+    str_len($phone) > 40
 ) {
     redirect_contact('error');
 }
@@ -49,6 +58,7 @@ $payload = [
     'email' => $email,
     'phone' => $phone,
     'message' => $message,
+    'to' => CONTACT_TO,
 ];
 
 $mensajesDir = __DIR__ . '/mensajes';
@@ -65,15 +75,39 @@ $saved = (bool) file_put_contents(
 $mailOk = false;
 if (CONTACT_TRY_MAIL) {
     $subject = 'Nuevo mensaje web LCS — ' . $name;
-    $body = "Nombre: {$name}\nEmpresa: {$company}\nEmail: {$email}\nTeléfono: {$phone}\n\nMensaje:\n{$message}\n";
+    $body = implode("\n", [
+        'Has recibido un nuevo mensaje desde el formulario web de LCS.',
+        '',
+        'Nombre: ' . $name,
+        'Empresa: ' . ($company !== '' ? $company : '—'),
+        'Email: ' . $email,
+        'Teléfono: ' . ($phone !== '' ? $phone : '—'),
+        '',
+        'Mensaje:',
+        $message,
+        '',
+        '—',
+        'Enviado: ' . date('d/m/Y H:i:s'),
+        'IP: ' . ($payload['ip'] !== '' ? $payload['ip'] : '—'),
+    ]);
+
+    $encodedSubject = '=?UTF-8?B?' . base64_encode($subject) . '?=';
     $headers = [
         'MIME-Version: 1.0',
         'Content-Type: text/plain; charset=UTF-8',
+        'Content-Transfer-Encoding: 8bit',
         'From: ' . CONTACT_FROM_NAME . ' <' . SITE_EMAIL . '>',
         'Reply-To: ' . $name . ' <' . $email . '>',
         'X-Mailer: PHP/' . PHP_VERSION,
     ];
-    $mailOk = @mail(CONTACT_TO, '=?UTF-8?B?' . base64_encode($subject) . '?=', $body, implode("\r\n", $headers));
+
+    $mailOk = @mail(
+        CONTACT_TO,
+        $encodedSubject,
+        $body,
+        implode("\r\n", $headers),
+        '-f' . SITE_EMAIL
+    );
 }
 
 if ($saved || $mailOk) {

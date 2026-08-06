@@ -93,7 +93,11 @@ function render_video(array $video, string $class = ''): void
     $classAttr = trim('video-frame ' . $class);
 
     if ($file !== '') {
+        $absolute = dirname(__DIR__) . '/' . ltrim(str_replace('\\', '/', $file), '/');
         $src = base_url($file);
+        if (is_file($absolute)) {
+            $src .= '?v=' . (string) filemtime($absolute);
+        }
         $posterAttr = $poster !== '' ? ' poster="' . e(base_url($poster)) . '"' : '';
         echo '<div class="' . e($classAttr) . '">';
         echo '<video controls preload="metadata" playsinline' . $posterAttr . ' title="' . e($title) . '">';

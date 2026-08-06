@@ -15,15 +15,14 @@ $pageDescription = $pageDescription ?? 'Ejecutamos proyectos de construcción, i
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="<?= e(base_url('assets/css/style.css')) ?>">
+  <link rel="stylesheet" href="<?= e(base_url('assets/css/style.css')) ?>?v=20260805b">
   <link rel="icon" href="<?= e(base_url('assets/img/brand/logo-lcs.jpeg')) ?>">
 </head>
 <body>
 <header class="site-header">
   <div class="container header-inner">
     <a class="brand" href="<?= e(base_url('index.php')) ?>">
-      <img src="<?= e(base_url('assets/img/brand/logo-lcs.jpeg')) ?>" alt="LCS">
-      <span class="brand-text">LCS</span>
+      <img src="<?= e(base_url('assets/img/brand/logo-lcs.jpeg')) ?>" alt="LCS — Luque Construcción y Servicios">
     </a>
     <nav class="nav" aria-label="Principal">
       <a class="<?= e(is_active('index')) ?>" href="<?= e(base_url('index.php')) ?>">Inicio</a>

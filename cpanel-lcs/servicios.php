@@ -15,10 +15,19 @@ require __DIR__ . '/includes/header.php';
   <div class="container">
     <div class="grid-3">
       <?php foreach ($services as $service): ?>
-        <div class="service-card">
+        <article class="service-card">
+          <?php if (!empty($service['image'])): ?>
+            <img
+              src="<?= e(base_url($service['image'])) ?>"
+              alt="<?= e($service['title']) ?>"
+              loading="lazy"
+              width="640"
+              height="400"
+            >
+          <?php endif; ?>
           <h3><?= e($service['title']) ?></h3>
-          <p style="color:#555"><?= e($service['description']) ?></p>
-        </div>
+          <p class="service-card-desc"><?= e($service['description']) ?></p>
+        </article>
       <?php endforeach; ?>
     </div>
     <div class="actions">

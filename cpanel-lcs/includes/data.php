@@ -61,34 +61,42 @@ $services = [
     [
         'title' => 'Obras de edificación',
         'description' => 'Ejecución de edificaciones y rehabilitaciones cumpliendo especificaciones técnicas, normativas y estándares de seguridad. Ideal para infraestructura educativa, comercial y de uso público.',
+        'image' => 'assets/img/proyectos/ie-20158-mala.webp',
     ],
     [
         'title' => 'Sistemas urbanos',
         'description' => 'Soluciones urbanas integrales que mejoran la calidad de vida: espacios públicos, equipamiento y obras que ordenan el crecimiento de ciudades y distritos.',
+        'image' => 'assets/img/proyectos/mercado-el-algarrobal.webp',
     ],
     [
         'title' => 'Vías de acceso',
         'description' => 'Construcción y rehabilitación de infraestructura vial, bermas y accesos con enfoque en durabilidad, seguridad vial y continuidad del servicio.',
+        'image' => 'assets/img/proyectos/bermas-samegua.webp',
     ],
     [
         'title' => 'Contratos municipales',
         'description' => 'Ejecución de obras bajo estándares normativos municipales y regionales, con capacidad de gestión técnica, documental y de plazos frente a entidades públicas.',
+        'image' => 'assets/img/proyectos/campolo-callao.webp',
     ],
     [
         'title' => 'Obras de saneamiento',
         'description' => 'Infraestructura de agua, saneamiento y servicios ambientales para comunidades, incluyendo intervenciones de limpieza pública y disposición final cuando el alcance lo requiere.',
+        'image' => 'assets/img/proyectos/limpieza-trujillo.webp',
     ],
     [
         'title' => 'Obras hidráulicas',
         'description' => 'Proyectos hidráulicos con ingeniería especializada, orientados a controlar riesgos, optimizar recursos hídricos y proteger zonas vulnerables.',
+        'image' => 'assets/img/proyectos/muro-buena-vista.webp',
     ],
     [
         'title' => 'Obras hidroenergéticas',
         'description' => 'Participación en infraestructura hidroenergética y afines, aportando capacidad constructiva y coordinación multidisciplinaria.',
+        'image' => 'assets/img/proyectos/losas-talara.webp',
     ],
     [
         'title' => 'Consultoría y suministro',
         'description' => 'Prestación de servicios, suministro de bienes y consultoría para complementar la ejecución de obra y fortalecer la toma de decisiones técnicas del cliente.',
+        'image' => 'assets/img/hero.png',
     ],
 ];
 
@@ -252,11 +260,11 @@ $regions = [
 $videos = [
     [
         'title' => 'Obra en ejecución — LCS',
-        'file' => 'assets/video/hero-lcs.mp4',
+        'file' => 'assets/video/lcs.mp4',
         'youtube' => '',
-        'poster' => 'assets/img/hero.png',
+        'poster' => '',
         'featured' => true,
-        'description' => 'Video institucional / hero del sitio. Compatible con cPanel (MP4 ~5 MB).',
+        'description' => 'Video institucional de LCS en obra.',
     ],
     [
         'title' => 'Infraestructura educativa',
