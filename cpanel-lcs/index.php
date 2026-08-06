@@ -14,7 +14,7 @@ $historiaParts = explode("\n\n", $about['historia']['body']);
       loop
       playsinline
       preload="none"
-      poster="<?= e(base_url('assets/img/hero.png')) ?>"
+      poster="<?= e(base_url('assets/img/hero-poster.jpg')) ?>"
       aria-hidden="true"
     >
       <source src="<?= e(base_url('assets/video/hero-lcs.mp4')) ?>" type="video/mp4">
@@ -45,7 +45,7 @@ $historiaParts = explode("\n\n", $about['historia']['body']);
 
 <section
   class="scroll-showcase"
-  style="--showcase-image: url('<?= e(base_url('assets/img/hero.png')) ?>')"
+  style="--showcase-image: url('<?= e(base_url('assets/img/hero-poster.jpg')) ?>')"
   aria-label="Maquinaria y experiencia de LCS"
 >
   <div class="scroll-showcase-overlay"></div>

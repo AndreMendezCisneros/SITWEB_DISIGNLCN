@@ -151,7 +151,7 @@ $services = [
     [
         'title' => 'Consultoría y suministro',
         'description' => 'Prestación de servicios, suministro de bienes y consultoría para complementar la ejecución de obra y fortalecer la toma de decisiones técnicas del cliente.',
-        'image' => 'assets/img/hero.png',
+        'image' => 'assets/img/hero-poster.jpg',
     ],
 ];
 

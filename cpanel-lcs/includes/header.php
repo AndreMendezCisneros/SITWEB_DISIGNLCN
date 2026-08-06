@@ -4,6 +4,8 @@ require_once __DIR__ . '/data.php';
 
 $pageTitle = $pageTitle ?? SITE_NAME;
 $pageDescription = $pageDescription ?? 'Ejecutamos proyectos de construcción, infraestructura y mantenimiento con enfoque en calidad, seguridad y cumplimiento de plazos.';
+$assetV = '20260805fast';
+$isHome = current_page() === 'index';
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -14,15 +16,20 @@ $pageDescription = $pageDescription ?? 'Ejecutamos proyectos de construcción, i
   <meta name="description" content="<?= e($pageDescription) ?>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="<?= e(base_url('assets/css/style.css')) ?>?v=20260805c">
+  <?php if ($isHome): ?>
+  <link rel="preload" as="image" href="<?= e(base_url('assets/img/hero-poster.jpg')) ?>">
+  <?php endif; ?>
+  <link rel="preload" href="<?= e(base_url('assets/css/style.css')) ?>?v=<?= e($assetV) ?>" as="style">
+  <link rel="stylesheet" href="<?= e(base_url('assets/css/style.css')) ?>?v=<?= e($assetV) ?>">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;600;700&display=swap" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;600;700&display=swap"></noscript>
   <link rel="icon" href="<?= e(base_url('assets/img/brand/logo-lcs.jpeg')) ?>">
 </head>
 <body>
 <header class="site-header">
   <div class="container header-inner">
     <a class="brand" href="<?= e(base_url('index.php')) ?>">
-      <img src="<?= e(base_url('assets/img/brand/logo-lcs.jpeg')) ?>" alt="LCS — Luque Construcción y Servicios">
+      <img src="<?= e(base_url('assets/img/brand/logo-lcs.jpeg')) ?>" alt="LCS — Luque Construcción y Servicios" width="44" height="44" decoding="async">
     </a>
     <nav class="nav" aria-label="Principal">
       <a class="<?= e(is_active('index')) ?>" href="<?= e(base_url('index.php')) ?>">Inicio</a>

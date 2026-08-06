@@ -76,7 +76,7 @@ require __DIR__ . '/includes/header.php';
     <div class="coverage-layout">
       <figure class="coverage-map">
         <img
-          src="<?= e(base_url('assets/img/cobertura-regional-lcs.png')) ?>"
+          src="<?= e(base_url('assets/img/cobertura-regional-lcs.jpg')) ?>"
           alt="Mapa del Perú con cobertura de LCS en Piura, La Libertad, Lima, Callao y Moquegua"
           loading="lazy"
         >

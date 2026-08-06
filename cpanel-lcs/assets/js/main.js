@@ -12,14 +12,25 @@ document.addEventListener('DOMContentLoaded', () => {
   const video = document.getElementById('hero-video');
   if (video && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     const play = () => {
+      if (video.preload === 'none') {
+        video.preload = 'metadata';
+        video.load();
+      }
       video.setAttribute('autoplay', '');
       const p = video.play();
       if (p && typeof p.catch === 'function') p.catch(() => {});
     };
-    if ('requestIdleCallback' in window) {
-      requestIdleCallback(play, { timeout: 2000 });
+    const start = () => {
+      if ('requestIdleCallback' in window) {
+        requestIdleCallback(play, { timeout: 1800 });
+      } else {
+        window.setTimeout(play, 350);
+      }
+    };
+    if (window.matchMedia('(max-width: 768px)').matches) {
+      window.setTimeout(start, 700);
     } else {
-      window.setTimeout(play, 400);
+      start();
     }
   }
 });
