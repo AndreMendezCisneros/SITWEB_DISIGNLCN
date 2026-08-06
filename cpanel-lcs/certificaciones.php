@@ -14,9 +14,10 @@ require __DIR__ . '/includes/header.php';
 <section class="section section-charcoal">
   <div class="container grid-2 sm-2">
     <?php foreach ($certifications as $cert): ?>
-      <div class="cert-card">
-        <h3 class="display" style="font-size:1.8rem;margin:0"><?= e($cert['name']) ?></h3>
-        <p class="meta" style="margin-top:0.75rem">Emisor: <?= e($cert['issuer']) ?></p>
+      <div class="cert-card reveal">
+        <span class="cert-badge"><?= e($cert['badge'] ?? 'LCS') ?></span>
+        <h3 class="display cert-card-title"><?= e($cert['name']) ?></h3>
+        <p class="meta cert-card-meta">Emisor: <?= e($cert['issuer']) ?></p>
       </div>
     <?php endforeach; ?>
   </div>

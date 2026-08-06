@@ -21,10 +21,65 @@ $pillars = [
 ];
 
 $stats = [
-    ['value' => '10+', 'label' => 'Años construyendo futuro'],
-    ['value' => '6', 'label' => 'Regiones con presencia'],
-    ['value' => '7+', 'label' => 'Proyectos públicos documentados'],
-    ['value' => 'Calidad y seguridad', 'label' => 'Enfoque operativo'],
+    ['number' => 10, 'suffix' => '+', 'label' => 'Años construyendo futuro'],
+    ['number' => 6, 'suffix' => '', 'label' => 'Regiones con presencia'],
+    ['number' => 7, 'suffix' => '+', 'label' => 'Proyectos públicos documentados'],
+    ['number' => null, 'suffix' => '', 'value' => 'Calidad', 'label' => 'Enfoque operativo'],
+];
+
+/** Trayectoria LCS — editable */
+$timeline = [
+    [
+        'year' => '2014',
+        'title' => 'Inicio de operaciones',
+        'body' => 'LCS nace con foco en optimización de procesos constructivos y obras de infraestructura.',
+    ],
+    [
+        'year' => '2018',
+        'title' => 'Expansión regional',
+        'body' => 'Ampliamos presencia hacia regiones del norte y sur del Perú con contratos municipales.',
+    ],
+    [
+        'year' => '2021',
+        'title' => 'Infraestructura educativa',
+        'body' => 'Ejecución de rehabilitación integral en IE N°20158 — Dos de Mayo (Mala, Cañete).',
+    ],
+    [
+        'year' => '2022',
+        'title' => 'Obras de gran escala',
+        'body' => 'Mercado de Abastos, muros de contención e infraestructura deportiva en Callao y Moquegua.',
+    ],
+    [
+        'year' => '2023',
+        'title' => 'Saneamiento y deporte',
+        'body' => 'Limpieza pública en Trujillo y acondicionamiento de losas deportivas en Talara.',
+    ],
+];
+
+/** Cifras de seguridad — editables (placeholders hasta validación interna) */
+$safetyStats = [
+    ['number' => 12000, 'suffix' => '+', 'label' => 'Horas-hombre sin incidentes mayores'],
+    ['number' => 48, 'suffix' => '', 'label' => 'Capacitaciones SST al año'],
+    ['number' => 100, 'suffix' => '%', 'label' => 'Obras con plan de seguridad'],
+];
+
+/** Testimonios — contenido de ejemplo editable */
+$testimonials = [
+    [
+        'name' => 'Área de Obras',
+        'role' => 'Municipalidad Distrital de Mala',
+        'quote' => 'Cumplieron plazos y estándares técnicos en la rehabilitación educativa. Comunicación clara en cada etapa.',
+    ],
+    [
+        'name' => 'Supervisión de obra',
+        'role' => 'Gobierno Regional del Callao',
+        'quote' => 'La renovación deportiva en Campolo se ejecutó con orden, seguridad y acabados consistentes.',
+    ],
+    [
+        'name' => 'Gestión de proyectos',
+        'role' => 'Petróleos del Perú S.A.',
+        'quote' => 'Buen desempeño en acondicionamiento de losas: coordinación ágil y entrega conforme a lo pactado.',
+    ],
 ];
 
 $workHighlights = [
@@ -113,6 +168,13 @@ $projects = [
         'condition' => 'Ejecutada',
         'featured' => true,
         'image' => 'assets/img/proyectos/ie-20158-mala.webp',
+        'gallery' => [
+            'assets/img/proyectos/ie-20158-mala.webp',
+            'assets/img/proyectos/muro-buena-vista.webp',
+            'assets/img/proyectos/mercado-el-algarrobal.webp',
+        ],
+        'before' => 'assets/img/proyectos/muro-buena-vista.webp',
+        'after' => 'assets/img/proyectos/ie-20158-mala.webp',
         'description' => 'Rehabilitación de los servicios educativos de la Institución Educativa N°20158. Intervención integral orientada a recuperar condiciones de infraestructura para la comunidad educativa, con plazos y estándares de obra pública.',
     ],
     [
@@ -127,6 +189,13 @@ $projects = [
         'condition' => 'Ejecutada',
         'featured' => true,
         'image' => 'assets/img/proyectos/mercado-el-algarrobal.webp',
+        'gallery' => [
+            'assets/img/proyectos/mercado-el-algarrobal.webp',
+            'assets/img/proyectos/campolo-callao.webp',
+            'assets/img/proyectos/bermas-samegua.webp',
+        ],
+        'before' => '',
+        'after' => '',
         'description' => 'Ejecución de obra para la construcción del mercado de abastos, fortaleciendo el comercio local y el equipamiento urbano del distrito con una intervención de gran escala.',
     ],
     [
@@ -141,6 +210,12 @@ $projects = [
         'condition' => 'Terminado',
         'featured' => false,
         'image' => 'assets/img/proyectos/bermas-samegua.webp',
+        'gallery' => [
+            'assets/img/proyectos/bermas-samegua.webp',
+            'assets/img/proyectos/limpieza-trujillo.webp',
+        ],
+        'before' => 'assets/img/proyectos/limpieza-trujillo.webp',
+        'after' => 'assets/img/proyectos/bermas-samegua.webp',
         'description' => 'Suministro y construcción de bermas con mezcla asfáltica a todo costo, mejorando la seguridad y el acabado de la vía en un plazo acotado de ejecución.',
     ],
     [
@@ -155,6 +230,12 @@ $projects = [
         'condition' => 'Ejecutada',
         'featured' => true,
         'image' => 'assets/img/proyectos/muro-buena-vista.webp',
+        'gallery' => [
+            'assets/img/proyectos/muro-buena-vista.webp',
+            'assets/img/proyectos/ie-20158-mala.webp',
+        ],
+        'before' => '',
+        'after' => '',
         'description' => 'Creación de muro de contención en zona de alto riesgo en la Calle Virgen del Carmen del Anexo Buena Vista, priorizando la protección de la población y la estabilidad del terreno.',
     ],
     [
@@ -169,6 +250,12 @@ $projects = [
         'condition' => 'Terminado',
         'featured' => true,
         'image' => 'assets/img/proyectos/campolo-callao.webp',
+        'gallery' => [
+            'assets/img/proyectos/campolo-callao.webp',
+            'assets/img/proyectos/losas-talara.webp',
+        ],
+        'before' => 'assets/img/proyectos/losas-talara.webp',
+        'after' => 'assets/img/proyectos/campolo-callao.webp',
         'description' => 'Renovación de infraestructura deportiva en el campo deportivo Campolo Alcalde, mejorando las condiciones de uso deportivo y recreativo para la comunidad.',
     ],
     [
@@ -183,6 +270,12 @@ $projects = [
         'condition' => 'Ejecutado',
         'featured' => true,
         'image' => 'assets/img/proyectos/limpieza-trujillo.webp',
+        'gallery' => [
+            'assets/img/proyectos/limpieza-trujillo.webp',
+            'assets/img/proyectos/bermas-samegua.webp',
+        ],
+        'before' => '',
+        'after' => '',
         'description' => 'Mejoramiento y ampliación del servicio de limpieza pública en la ciudad de Trujillo y disposición final para 9 distritos de la provincia, una intervención de alto impacto ambiental y operativo.',
     ],
     [
@@ -197,6 +290,12 @@ $projects = [
         'condition' => 'Terminado',
         'featured' => true,
         'image' => 'assets/img/proyectos/losas-talara.webp',
+        'gallery' => [
+            'assets/img/proyectos/losas-talara.webp',
+            'assets/img/proyectos/campolo-callao.webp',
+        ],
+        'before' => '',
+        'after' => '',
         'description' => 'Servicio de acondicionamiento de las losas deportivas en el distrito Pariñas, Talara, ejecutado para Petróleos del Perú S.A., mejorando infraestructura deportiva comunitaria.',
     ],
 ];
@@ -235,8 +334,16 @@ $clients = [
 ];
 
 $certifications = [
-    ['name' => 'Gestión de calidad en obra', 'issuer' => 'LCS'],
-    ['name' => 'Seguridad y salud en el trabajo', 'issuer' => 'LCS'],
+    [
+        'name' => 'Gestión de calidad en obra',
+        'issuer' => 'LCS',
+        'badge' => 'Calidad',
+    ],
+    [
+        'name' => 'Seguridad y salud en el trabajo',
+        'issuer' => 'LCS',
+        'badge' => 'SST',
+    ],
 ];
 
 $regions = [

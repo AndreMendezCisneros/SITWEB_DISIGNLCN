@@ -21,7 +21,7 @@ require __DIR__ . '/includes/header.php';
       <?php endforeach; ?>
     </div>
     <div class="about-image has-img">
-      <img src="<?= e(base_url('assets/img/proyectos/ie-20158-mala.webp')) ?>" alt="Obra educativa LCS">
+      <img src="<?= e(base_url('assets/img/proyectos/ie-20158-mala.webp')) ?>" alt="Obra educativa LCS" width="800" height="500" loading="lazy">
     </div>
   </div>
 </section>
@@ -41,13 +41,23 @@ require __DIR__ . '/includes/header.php';
 
 <section class="section section-charcoal">
   <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow">Trayectoria</p>
+      <h2 class="display">Nuestra historia en hitos</h2>
+    </div>
+    <?php require __DIR__ . '/includes/partials/timeline.php'; ?>
+  </div>
+</section>
+
+<section class="section section-white">
+  <div class="container">
     <div class="section-head">
       <p class="eyebrow">Pilares</p>
       <h2 class="display">Cómo trabajamos</h2>
     </div>
     <div class="grid-4">
       <?php foreach ($pillars as $item): ?>
-        <div class="pillar">
+        <div class="pillar reveal">
           <p class="eyebrow"><?= e($item['title']) ?></p>
           <p><?= e($item['body']) ?></p>
         </div>

@@ -16,7 +16,7 @@ require __DIR__ . '/includes/header.php';
     <div class="grid-3">
       <?php foreach ($projects as $project): ?>
         <a class="project-card" href="<?= e(base_url('proyecto.php?slug=' . urlencode($project['slug']))) ?>">
-          <img src="<?= e(base_url($project['image'])) ?>" alt="<?= e($project['name']) ?>" loading="lazy">
+          <img src="<?= e(base_url($project['image'])) ?>" alt="<?= e($project['name']) ?>" loading="lazy" width="640" height="400">
           <p class="meta"><?= e($project['category']) ?> · <?= e((string) $project['year']) ?></p>
           <h3><?= e($project['name']) ?></h3>
           <p class="meta"><?= e($project['location']) ?></p>

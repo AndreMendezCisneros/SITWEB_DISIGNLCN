@@ -47,5 +47,9 @@ web/next-env.d.ts
 # Nested accidental / copies
 /LCS/
 
+# Contact form dumps (cPanel PHP)
+cpanel-lcs/mensajes/*.json
+!cpanel-lcs/mensajes/.gitkeep
+
 # Misc
 .pnpm-store/

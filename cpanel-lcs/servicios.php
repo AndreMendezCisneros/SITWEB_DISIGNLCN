@@ -15,7 +15,7 @@ require __DIR__ . '/includes/header.php';
   <div class="container">
     <div class="grid-3">
       <?php foreach ($services as $service): ?>
-        <article class="service-card">
+        <article class="service-card reveal">
           <?php if (!empty($service['image'])): ?>
             <img
               src="<?= e(base_url($service['image'])) ?>"

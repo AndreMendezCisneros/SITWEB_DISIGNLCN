@@ -11,8 +11,14 @@ if ($project === null) {
 }
 
 $pageTitle = $project['name'] . ' — LCS';
-$pageDescription = $project['description'];
+$pageDescription = $project['category'] . ' en ' . $project['location'] . ' | LCS — Luque Construcción y Servicios';
 require __DIR__ . '/includes/header.php';
+
+$gallery = $project['gallery'] ?? [];
+if ($gallery === [] && !empty($project['image'])) {
+    $gallery = [$project['image']];
+}
+$hasBeforeAfter = !empty($project['before']) && !empty($project['after']);
 ?>
 <section class="page-hero">
   <div class="container">
@@ -24,17 +30,47 @@ require __DIR__ . '/includes/header.php';
 
 <section class="section section-black">
   <div class="container grid-2 md-2">
-    <div class="detail-media">
-      <img src="<?= e(base_url($project['image'])) ?>" alt="<?= e($project['name']) ?>">
+    <div class="detail-media reveal">
+      <img
+        src="<?= e(base_url($project['image'])) ?>"
+        alt="<?= e($project['name']) ?>"
+        width="960"
+        height="600"
+      >
     </div>
-    <div>
+    <div class="reveal">
       <p><?= e($project['description']) ?></p>
-      <div class="detail-meta" style="margin-top:1.75rem">
-        <div><span>Entidad</span><?= e($project['entity']) ?></div>
-        <div><span>Estado</span><?= e($project['condition']) ?></div>
-        <div><span>Monto</span><?= e(format_money((float) $project['amount'])) ?></div>
-        <div><span>Duración</span><?= $project['duration_days'] ? e((string) $project['duration_days']) . ' días' : '—' ?></div>
-      </div>
+
+      <table class="tech-sheet">
+        <caption>Ficha técnica</caption>
+        <tbody>
+          <tr>
+            <th scope="row">Entidad contratante</th>
+            <td><?= e($project['entity']) ?></td>
+          </tr>
+          <tr>
+            <th scope="row">Ubicación</th>
+            <td><?= e($project['location']) ?></td>
+          </tr>
+          <tr>
+            <th scope="row">Año</th>
+            <td><?= e((string) $project['year']) ?></td>
+          </tr>
+          <tr>
+            <th scope="row">Plazo</th>
+            <td><?= $project['duration_days'] ? e((string) $project['duration_days']) . ' días' : '—' ?></td>
+          </tr>
+          <tr>
+            <th scope="row">Monto</th>
+            <td><?= e(format_money((float) $project['amount'])) ?></td>
+          </tr>
+          <tr>
+            <th scope="row">Estado</th>
+            <td><?= e($project['condition']) ?></td>
+          </tr>
+        </tbody>
+      </table>
+
       <div class="actions">
         <a class="btn btn-gold" href="<?= e(base_url('contacto.php')) ?>">Cotizar un proyecto similar</a>
         <a class="btn btn-outline-gold" href="<?= e(base_url('proyectos.php')) ?>">Volver a proyectos</a>
@@ -42,4 +78,42 @@ require __DIR__ . '/includes/header.php';
     </div>
   </div>
 </section>
+
+<?php if (count($gallery) > 0): ?>
+<section class="section section-charcoal">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow">Galería</p>
+      <h2 class="display">Imágenes del proyecto</h2>
+    </div>
+    <div class="project-gallery" data-lightbox-gallery>
+      <?php foreach ($gallery as $img): ?>
+        <a class="project-gallery-item reveal" href="<?= e(base_url($img)) ?>">
+          <img src="<?= e(base_url($img)) ?>" alt="<?= e($project['name']) ?>" loading="lazy" width="640" height="400">
+        </a>
+      <?php endforeach; ?>
+    </div>
+  </div>
+</section>
+<?php endif; ?>
+
+<?php if ($hasBeforeAfter): ?>
+<section class="section section-black">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow">Antes / Después</p>
+      <h2 class="display">Evolución de la obra</h2>
+    </div>
+    <div class="reveal">
+      <?php
+      $before = $project['before'];
+      $after = $project['after'];
+      $alt = $project['name'];
+      require __DIR__ . '/includes/partials/before-after.php';
+      ?>
+    </div>
+  </div>
+</section>
+<?php endif; ?>
+
 <?php require __DIR__ . '/includes/footer.php'; ?>
