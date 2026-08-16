@@ -7,4 +7,4 @@ Disallow: /mensajes/
 Disallow: /enviar.php
 Disallow: /enviar-cotizacion.php
 
-Sitemap: https://lcs.pe/sitemap.xml
+Sitemap: https://lcs.pe/sitemap.php
