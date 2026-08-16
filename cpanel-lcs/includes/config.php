@@ -13,8 +13,18 @@ define('SITE_PHONE', '917 697 815');
 define('SITE_WHATSAPP', '51917697815');
 define('SITE_ADDRESS', 'Av. Manuel Olguín 335, Edificio Link Tower — Oficina 901, Surco');
 define('SITE_MANAGER', 'Jorge Luis Luque Solis');
-define('SITE_MAP_LAT', '-12.11135');
-define('SITE_MAP_LNG', '-76.99105');
+define('SITE_MAP_QUERY', 'C E Link Tower, Av. Manuel Olguín 335, Santiago de Surco');
+define('SITE_MAP_PLUS', 'C E Link Tower, Santiago de Surco');
+
+function maps_embed_url(): string
+{
+    return 'https://maps.google.com/maps?q=' . rawurlencode(SITE_MAP_QUERY) . '&hl=es&z=18&output=embed';
+}
+
+function maps_open_url(): string
+{
+    return 'https://www.google.com/maps/search/?api=1&query=' . rawurlencode(SITE_MAP_QUERY);
+}
 
 /** Destinatario de cotizaciones (cámbialo si hace falta) */
 define('CONTACT_TO', 'contactenos@lcs.pe');

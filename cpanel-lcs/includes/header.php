@@ -4,7 +4,7 @@ require_once __DIR__ . '/data.php';
 
 $pageTitle = $pageTitle ?? SITE_NAME;
 $pageDescription = $pageDescription ?? 'Ejecutamos proyectos de construcción, infraestructura y mantenimiento con enfoque en calidad, seguridad y cumplimiento de plazos.';
-$assetV = '20260805fast';
+$assetV = '20260816logo2';
 $isHome = current_page() === 'index';
 ?>
 <!DOCTYPE html>
@@ -23,13 +23,16 @@ $isHome = current_page() === 'index';
   <link rel="stylesheet" href="<?= e(base_url('assets/css/style.css')) ?>?v=<?= e($assetV) ?>">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;600;700&display=swap" media="print" onload="this.media='all'">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Manrope:wght@400;600;700&display=swap"></noscript>
-  <link rel="icon" href="<?= e(base_url('assets/img/brand/logo-lcs.jpeg')) ?>">
+  <link rel="icon" href="<?= e(base_url('favicon.ico')) ?>" sizes="any">
+  <link rel="icon" type="image/png" sizes="48x48" href="<?= e(base_url('assets/img/brand/favicon-48.png')) ?>">
+  <link rel="icon" type="image/png" sizes="192x192" href="<?= e(base_url('assets/img/brand/favicon-192.png')) ?>">
+  <link rel="apple-touch-icon" href="<?= e(base_url('assets/img/brand/apple-touch-icon.png')) ?>">
 </head>
 <body>
 <header class="site-header">
   <div class="container header-inner">
     <a class="brand" href="<?= e(base_url('index.php')) ?>">
-      <img src="<?= e(base_url('assets/img/brand/logo-lcs.jpeg')) ?>" alt="LCS — Luque Construcción y Servicios" width="44" height="44" decoding="async">
+      <img src="<?= e(base_url('assets/img/brand/logo_lcs_sf.png')) ?>" alt="LCS — Luque Construcción y Servicios" width="320" height="72" decoding="async">
     </a>
     <nav class="nav" aria-label="Principal">
       <a class="<?= e(is_active('index')) ?>" href="<?= e(base_url('index.php')) ?>">Inicio</a>

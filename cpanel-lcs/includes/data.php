@@ -303,46 +303,147 @@ $projects = [
 $clients = [
     [
         'name' => 'Municipalidad Distrital de Mala',
-        'logo' => 'assets/img/clientes/municipalidad-mala.png',
+        'logo' => 'assets/img/clientes/mala_sf.png',
         'website' => 'https://www.gob.pe/munimala',
     ],
     [
         'name' => 'Municipalidad Distrital de El Algarrobal',
-        'logo' => 'assets/img/clientes/el-algarrobal.png',
+        'logo' => 'assets/img/clientes/algarrobal_sf.png',
         'website' => 'https://www.gob.pe/munielalgarrobal',
     ],
     [
         'name' => 'Municipalidad Distrital de Samegua',
-        'logo' => 'assets/img/clientes/samegua.png',
+        'logo' => 'assets/img/clientes/samegua_sf.png',
         'website' => 'https://www.munisamegua.gob.pe/',
     ],
     [
         'name' => 'Gobierno Regional del Callao',
-        'logo' => 'assets/img/clientes/callao.png',
+        'logo' => 'assets/img/clientes/callao_sf.png',
         'website' => 'https://www.gob.pe/regioncallao',
     ],
     [
         'name' => 'Petróleos del Perú S.A.',
-        'logo' => 'assets/img/clientes/petroperu.png',
+        'logo' => 'assets/img/clientes/petroperu_sf.png',
         'website' => 'https://www.petroperu.com.pe/',
     ],
     [
         'name' => 'UE 003 Gestión Integral de la Calidad Ambiental',
-        'logo' => 'assets/img/clientes/gica.png',
+        'logo' => 'assets/img/clientes/eu_oo3_sf.png',
         'website' => 'https://www.gob.pe/gica',
+    ],
+];
+
+$certificationMeta = [
+    'company' => 'LUQUE CONSTRUCCIÓN Y SERVICIOS S.A.C.',
+    'ruc' => '20607284033',
+    'address' => 'Av. Manuel Olguín N.° 335, Int. 901, Urb. Los Granados, Santiago de Surco, Lima',
+    'ciiu' => '4100 — Construcción de edificios',
+    'sector' => 'Construcción',
+    'provider_types' => [
+        'Ejecución de obras',
+        'Consultoría de obras',
+        'Proveedor de bienes',
+        'Proveedor de servicios',
+    ],
+    'issuer' => 'SISTEMACERTS',
+    'standard' => 'ISO/IEC 17021-1:2015',
+    'iso17021' => '2024-07-0088-R-00343',
+    'verify_url' => 'https://www.sistemacerts-verification.com/',
+    'verify_pe' => 'office@sistemacerts.org.pe',
+    'document' => 'assets/docs/certificados-iso-lcs.pdf',
+];
+
+$certificationScopeGroups = [
+    [
+        'title' => 'Edificación e infraestructura pública',
+        'items' => [
+            'Obras de edificación, conjuntos habitacionales y condominios',
+            'Infraestructura educativa: colegios, institutos y universidades',
+            'Infraestructura de salud: hospitales, centros de salud, clínicas y postas',
+            'Palacios municipales, centros comerciales, recreativos, culturales y de abasto',
+        ],
+    ],
+    [
+        'title' => 'Espacios públicos y deporte',
+        'items' => [
+            'Estadios, complejos, losas, coliseos y polideportivos',
+            'Parques, plazas, alamedas y muros de contención',
+        ],
+    ],
+    [
+        'title' => 'Saneamiento e hidráulica',
+        'items' => [
+            'Agua potable, alcantarillado, red pública, letrinización y UBS',
+            'Reservorios, presas, canales, riego tecnificado, gaviones y encauzamientos',
+            'PTAP, PTAR, drenajes, rellenos sanitarios y pozos sépticos',
+        ],
+    ],
+    [
+        'title' => 'Vial, energía y obras civiles',
+        'items' => [
+            'Carreteras, caminos, puentes, pistas, veredas y pavimentación',
+            'Obras hidroenergéticas, eléctricas, electromecánicas y suministro de energía',
+            'Defensas ribereñas, estructuras metálicas, muelles, puertos y obras en el mar',
+        ],
     ],
 ];
 
 $certifications = [
     [
-        'name' => 'Gestión de calidad en obra',
-        'issuer' => 'LCS',
-        'badge' => 'Calidad',
+        'badge' => 'ISO 45001',
+        'code' => 'ISO 45001:2018',
+        'name' => 'Sistema de gestión de la seguridad y salud en el trabajo',
+        'issuer' => 'SISTEMACERTS',
+        'accreditation' => 'International Accreditation Service (IAS), Brea, California, EE. UU.',
+        'validity_code' => 'SISTEMA-PER/LCY-O9703',
+        'register' => '2025-08-0397 — Versión 001',
+        'valid_from' => '7 de agosto de 2025',
+        'valid_to' => '6 de agosto de 2028',
+        'cycle_valid_to' => '6 de agosto de 2026',
+        'review_1' => '7 de julio de 2026 al 6 de agosto de 2026',
+        'review_2' => '7 de julio de 2027 al 6 de agosto de 2027',
     ],
     [
-        'name' => 'Seguridad y salud en el trabajo',
-        'issuer' => 'LCS',
-        'badge' => 'SST',
+        'badge' => 'ISO 37001',
+        'code' => 'ISO 37001:2016',
+        'name' => 'Sistema de gestión antisoborno',
+        'issuer' => 'SISTEMACERTS',
+        'accreditation' => 'United Accreditation Foundation (UAF), Norfolk, Virginia, EE. UU.',
+        'validity_code' => 'LCY/SMSPL-PER/AB9753',
+        'register' => '2025-08-0397 — Versión 001',
+        'valid_from' => '7 de agosto de 2025',
+        'valid_to' => '6 de agosto de 2028',
+        'cycle_valid_to' => '6 de agosto de 2026',
+        'review_1' => '7 de julio de 2026 al 6 de agosto de 2026',
+        'review_2' => '7 de julio de 2027 al 6 de agosto de 2027',
+    ],
+    [
+        'badge' => 'ISO 9001',
+        'code' => 'ISO 9001:2015',
+        'name' => 'Sistema de gestión de calidad',
+        'issuer' => 'SISTEMACERTS',
+        'accreditation' => 'International Accreditation Service (IAS), Brea, California, EE. UU.',
+        'validity_code' => 'SISTEMA-PER/LCY-Q11538',
+        'register' => '2025-12-0713 — Versión 001',
+        'valid_from' => '12 de diciembre de 2025',
+        'valid_to' => '11 de diciembre de 2028',
+        'cycle_valid_to' => '11 de diciembre de 2026',
+        'review_1' => '11 de noviembre de 2026 al 11 de diciembre de 2026',
+        'review_2' => '11 de noviembre de 2027 al 11 de diciembre de 2027',
+    ],
+    [
+        'badge' => 'ISO 14001',
+        'code' => 'ISO 14001:2015',
+        'name' => 'Sistema de gestión ambiental',
+        'issuer' => 'SISTEMACERTS',
+        'accreditation' => 'International Accreditation Service (IAS), Brea, California, EE. UU.',
+        'validity_code' => 'SISTEMA-PER/LCY-E11886',
+        'register' => '2025-12-0713 — Versión 001',
+        'valid_from' => '12 de diciembre de 2025',
+        'valid_to' => '11 de diciembre de 2028',
+        'cycle_valid_to' => '11 de diciembre de 2026',
+        'review_1' => '11 de noviembre de 2026 al 11 de diciembre de 2026',
+        'review_2' => '11 de noviembre de 2027 al 11 de diciembre de 2027',
     ],
 ];
 

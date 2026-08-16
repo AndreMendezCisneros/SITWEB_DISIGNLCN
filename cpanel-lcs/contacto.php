@@ -99,13 +99,14 @@ $status = isset($_GET['status']) ? (string) $_GET['status'] : '';
     <div class="contact-map">
       <iframe
         class="map-frame"
-        title="Oficina LCS"
+        title="Oficina LCS en Google Maps"
         loading="lazy"
         referrerpolicy="no-referrer-when-downgrade"
-        src="https://www.openstreetmap.org/export/embed.html?bbox=-76.99605%2C-12.11635%2C-76.98605%2C-12.10635&amp;layer=mapnik&amp;marker=<?= e(SITE_MAP_LAT) ?>%2C<?= e(SITE_MAP_LNG) ?>"
+        src="<?= e(maps_embed_url()) ?>"
+        allowfullscreen
       ></iframe>
       <p class="meta" style="margin-top:0.75rem">
-        <a href="https://www.google.com/maps?q=<?= e(SITE_MAP_LAT) ?>,<?= e(SITE_MAP_LNG) ?>" target="_blank" rel="noopener">Abrir en Google Maps</a>
+        <a href="<?= e(maps_open_url()) ?>" target="_blank" rel="noopener">Abrir en Google Maps — C E Link Tower</a>
       </p>
     </div>
   </div>

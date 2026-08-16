@@ -17,7 +17,7 @@ $historiaParts = explode("\n\n", $about['historia']['body']);
       poster="<?= e(base_url('assets/img/hero-poster.jpg')) ?>"
       aria-hidden="true"
     >
-      <source src="<?= e(base_url('assets/video/hero-lcs.mp4')) ?>" type="video/mp4">
+      <source src="<?= e(base_url('assets/video/inicio.mp4')) ?>" type="video/mp4">
     </video>
   </div>
   <div class="hero-overlay"></div>
@@ -250,9 +250,9 @@ if ($homeFeatured === null && $homeVideos !== []) {
     <div class="cert-teaser-grid">
       <?php foreach ($certifications as $cert): ?>
         <article class="cert-badge-card reveal">
-          <span class="cert-badge"><?= e($cert['badge'] ?? 'LCS') ?></span>
-          <h3><?= e($cert['name']) ?></h3>
-          <p class="meta">Emisor: <?= e($cert['issuer']) ?></p>
+          <span class="cert-badge"><?= e($cert['badge'] ?? 'ISO') ?></span>
+          <h3><?= e($cert['code'] ?? $cert['name']) ?></h3>
+          <p class="meta"><?= e($cert['name']) ?></p>
         </article>
       <?php endforeach; ?>
     </div>
