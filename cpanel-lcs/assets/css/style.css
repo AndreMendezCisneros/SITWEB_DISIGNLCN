@@ -289,10 +289,12 @@ a {
   animation: rise 0.9s ease both;
 }
 
-.hero h1 {
+.hero h1,
+.hero-title {
   margin-top: 0.75rem;
-  font-size: clamp(2.5rem, 4.2vw, 3.6rem);
-  line-height: 1.04;
+  font-size: clamp(2.85rem, 5.4vw, 4.5rem);
+  line-height: 1.02;
+  color: var(--lcs-gold);
 }
 
 .hero p {
@@ -328,9 +330,10 @@ a {
     text-align: center;
   }
 
-  .hero h1 {
-    font-size: clamp(2.2rem, 11vw, 2.75rem);
-    line-height: 1.08;
+  .hero h1,
+  .hero-title {
+    font-size: clamp(2.45rem, 12vw, 3.15rem);
+    line-height: 1.06;
   }
 
   .hero p {
@@ -473,6 +476,28 @@ a {
   background:
     linear-gradient(120deg, #b8921f, var(--lcs-gold) 40%, var(--lcs-gold-soft) 70%, #b8921f);
   color: var(--lcs-black);
+}
+
+.section-live {
+  background:
+    radial-gradient(ellipse at top right, rgba(201, 162, 39, 0.16), transparent 42%),
+    linear-gradient(180deg, #12100a, #0a0a0a);
+}
+
+.live-pill {
+  display: inline-block;
+  margin-right: 0.45rem;
+  padding: 0.12rem 0.45rem;
+  border: 1px solid var(--lcs-gold);
+  color: var(--lcs-gold);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.project-card-live {
+  border-color: rgba(201, 162, 39, 0.35);
 }
 
 .section-head {

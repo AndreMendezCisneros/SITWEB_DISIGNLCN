@@ -4,7 +4,7 @@ declare(strict_types=1);
 $pillars = [
     [
         'title' => 'Experiencia',
-        'body' => 'Más de 10 años desarrollando proyectos de gran envergadura en diversos sectores públicos y privados.',
+        'body' => 'Cinco años desarrollando proyectos de gran envergadura, con un equipo multidisciplinario en sectores públicos y privados.',
     ],
     [
         'title' => 'Calidad',
@@ -21,9 +21,9 @@ $pillars = [
 ];
 
 $stats = [
-    ['number' => 10, 'suffix' => '+', 'label' => 'Años construyendo futuro'],
-    ['number' => 6, 'suffix' => '', 'label' => 'Regiones con presencia'],
-    ['number' => 7, 'suffix' => '+', 'label' => 'Proyectos públicos documentados'],
+    ['number' => 5, 'suffix' => '', 'label' => 'Años de trayectoria operativa'],
+    ['number' => 7, 'suffix' => '', 'label' => 'Regiones con presencia'],
+    ['number' => 8, 'suffix' => '+', 'label' => 'Proyectos públicos documentados'],
     ['number' => null, 'suffix' => '', 'value' => 'Calidad', 'label' => 'Enfoque operativo'],
 ];
 
@@ -53,6 +53,16 @@ $timeline = [
         'year' => '2023',
         'title' => 'Saneamiento y deporte',
         'body' => 'Limpieza pública en Trujillo y acondicionamiento de losas deportivas en Talara.',
+    ],
+    [
+        'year' => '2025',
+        'title' => 'Instituto Nacional de Salud',
+        'body' => 'Remodelación de edificio de laboratorios y equipamiento para el Instituto Nacional de Salud.',
+    ],
+    [
+        'year' => '2026',
+        'title' => 'Gobierno Regional de Puno',
+        'body' => 'Diseño, construcción y equipamiento del Centro de Salud de Moho, provincia de Moho, Puno.',
     ],
 ];
 
@@ -89,14 +99,14 @@ $workHighlights = [
     ['label' => 'Infraestructura deportiva', 'value' => 'Callao y Talara'],
     ['label' => 'Saneamiento y limpieza pública', 'value' => 'Trujillo y afines'],
     ['label' => 'Contratos con entidades públicas', 'value' => 'Municipios y gobierno regional'],
-    ['label' => 'Cobertura nacional selectiva', 'value' => 'Lima, Callao, La Libertad, Moquegua, Piura'],
+    ['label' => 'Cobertura nacional selectiva', 'value' => 'Lima, Callao, La Libertad, Moquegua, Piura y Puno'],
     ['label' => 'Gestión integral de obra', 'value' => 'Planificación, ejecución y cierre'],
 ];
 
 $about = [
     'historia' => [
         'title' => 'Quiénes somos',
-        'body' => "Somos una empresa peruana que nació con la idea de desarrollarse en la industria de la construcción, diferenciándose por la optimización constante en los procesos constructivos de diversos proyectos que hacen posible el desarrollo de nuestro país.\n\nEjecutamos obras de edificaciones, saneamiento, viales, electromecánicas, telecomunicaciones, irrigación y afines, con un equipo comprometido con la excelencia técnica y la responsabilidad social.",
+        'body' => "Somos una empresa peruana que nació con la idea de desarrollarse en la industria de la construcción, diferenciándose por la optimización constante en los procesos constructivos de diversos proyectos que hacen posible el desarrollo de nuestro país.\n\nEjecutamos obras de edificaciones, saneamiento, viales, electromecánicas, telecomunicaciones, irrigación y afines, con un equipo multidisciplinario comprometido con la excelencia técnica y la responsabilidad social.",
     ],
     'mision' => [
         'title' => 'Nuestra misión',
@@ -298,6 +308,69 @@ $projects = [
         'after' => '',
         'description' => 'Servicio de acondicionamiento de las losas deportivas en el distrito Pariñas, Talara, ejecutado para Petróleos del Perú S.A., mejorando infraestructura deportiva comunitaria.',
     ],
+    [
+        'name' => 'Planta de Valorización y Disposición final de Residuos Sólidos',
+        'slug' => 'planta-valorizacion-residuos',
+        'category' => 'Saneamiento',
+        'location' => 'Perú',
+        'entity' => 'Entidad pública',
+        'year' => 2024,
+        'amount' => null,
+        'duration_days' => null,
+        'condition' => 'Ejecutada',
+        'featured' => true,
+        'in_progress' => false,
+        'image' => 'assets/img/proyectos/limpieza-trujillo.webp',
+        'gallery' => [
+            'assets/img/proyectos/limpieza-trujillo.webp',
+            'assets/img/proyectos/bermas-samegua.webp',
+        ],
+        'before' => '',
+        'after' => '',
+        'description' => 'Obra de saneamiento para la valorización y disposición final de residuos sólidos, con enfoque ambiental y de servicio público.',
+    ],
+    [
+        'name' => 'Remodelación de edificio de laboratorios y equipamiento — INS',
+        'slug' => 'ins-laboratorios',
+        'category' => 'Salud',
+        'location' => 'Lima, Lima',
+        'entity' => 'Instituto Nacional de Salud',
+        'year' => 2025,
+        'amount' => null,
+        'duration_days' => null,
+        'condition' => 'En ejecución',
+        'featured' => true,
+        'in_progress' => true,
+        'image' => 'assets/img/proyectos/ie-20158-mala.webp',
+        'gallery' => [
+            'assets/img/proyectos/ie-20158-mala.webp',
+            'assets/img/proyectos/mercado-el-algarrobal.webp',
+        ],
+        'before' => '',
+        'after' => '',
+        'description' => 'Remodelación de edificio de laboratorios y equipamiento para el Instituto Nacional de Salud, una intervención vigente de alto impacto en infraestructura de salud.',
+    ],
+    [
+        'name' => 'Centro de Salud de Moho — GORE Puno',
+        'slug' => 'centro-salud-moho-puno',
+        'category' => 'Salud',
+        'location' => 'Moho, Puno',
+        'entity' => 'Gobierno Regional de Puno',
+        'year' => 2026,
+        'amount' => null,
+        'duration_days' => null,
+        'condition' => 'En ejecución',
+        'featured' => true,
+        'in_progress' => true,
+        'image' => 'assets/img/proyectos/mercado-el-algarrobal.webp',
+        'gallery' => [
+            'assets/img/proyectos/mercado-el-algarrobal.webp',
+            'assets/img/proyectos/ie-20158-mala.webp',
+        ],
+        'before' => '',
+        'after' => '',
+        'description' => 'Diseño, construcción y equipamiento del Centro de Salud de Moho, provincia de Moho, Puno, para el Gobierno Regional de Puno.',
+    ],
 ];
 
 $clients = [
@@ -330,6 +403,16 @@ $clients = [
         'name' => 'UE 003 Gestión Integral de la Calidad Ambiental',
         'logo' => 'assets/img/clientes/eu_oo3_sf.png',
         'website' => 'https://www.gob.pe/gica',
+    ],
+    [
+        'name' => 'Instituto Nacional de Salud',
+        'logo' => 'assets/img/clientes/ins_sf.png',
+        'website' => 'https://www.gob.pe/ins',
+    ],
+    [
+        'name' => 'Gobierno Regional de Puno',
+        'logo' => 'assets/img/clientes/puno_sf.png',
+        'website' => 'https://www.gob.pe/regionpuno',
     ],
 ];
 
@@ -450,10 +533,12 @@ $certifications = [
 $regions = [
     ['name' => 'Provincia de Talara', 'province' => 'Piura'],
     ['name' => 'Provincia de Trujillo', 'province' => 'La Libertad'],
+    ['name' => 'Provincia de Lima', 'province' => 'Lima'],
     ['name' => 'Provincia de Cañete', 'province' => 'Lima'],
     ['name' => 'Provincia del Callao', 'province' => 'Callao'],
     ['name' => 'Provincia de Ilo', 'province' => 'Moquegua'],
     ['name' => 'Provincia de Mariscal Nieto', 'province' => 'Moquegua'],
+    ['name' => 'Provincia de Moho', 'province' => 'Puno'],
 ];
 
 /**
@@ -517,4 +602,14 @@ function videos_ready(array $videos): array
         $hasYt = youtube_id($v['youtube'] ?? null) !== null;
         return $hasFile || $hasYt;
     }));
+}
+
+function projects_in_progress(array $projects): array
+{
+    return array_values(array_filter($projects, static fn (array $p) => !empty($p['in_progress'])));
+}
+
+function projects_completed(array $projects): array
+{
+    return array_values(array_filter($projects, static fn (array $p) => empty($p['in_progress'])));
 }

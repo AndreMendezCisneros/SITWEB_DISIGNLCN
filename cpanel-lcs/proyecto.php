@@ -62,7 +62,7 @@ $hasBeforeAfter = !empty($project['before']) && !empty($project['after']);
           </tr>
           <tr>
             <th scope="row">Monto</th>
-            <td><?= e(format_money((float) $project['amount'])) ?></td>
+            <td><?= isset($project['amount']) && $project['amount'] !== null ? e(format_money((float) $project['amount'])) : '—' ?></td>
           </tr>
           <tr>
             <th scope="row">Estado</th>

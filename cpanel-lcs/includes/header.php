@@ -4,7 +4,7 @@ require_once __DIR__ . '/data.php';
 
 $pageTitle = $pageTitle ?? SITE_NAME;
 $pageDescription = $pageDescription ?? 'Ejecutamos proyectos de construcción, infraestructura y mantenimiento con enfoque en calidad, seguridad y cumplimiento de plazos.';
-$assetV = '20260816logo2';
+$assetV = '20260824lcs';
 $isHome = current_page() === 'index';
 ?>
 <!DOCTYPE html>

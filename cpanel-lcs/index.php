@@ -3,7 +3,7 @@ $pageTitle = 'LCS — Luque Construcción y Servicios';
 $pageDescription = 'Construimos soluciones, creamos futuro. Proyectos de construcción, infraestructura y mantenimiento.';
 require __DIR__ . '/includes/header.php';
 
-$featured = array_values(array_filter($projects, static fn ($p) => !empty($p['featured'])));
+$featured = array_values(array_filter($projects, static fn ($p) => !empty($p['featured']) && empty($p['in_progress'])));
 $historiaParts = explode("\n\n", $about['historia']['body']);
 ?>
 <section class="hero">
@@ -23,7 +23,7 @@ $historiaParts = explode("\n\n", $about['historia']['body']);
   <div class="hero-overlay"></div>
   <div class="container hero-content">
     <p class="eyebrow">Luque Construcción y Servicios</p>
-    <h1 class="display">Construimos soluciones,<br>creamos futuro</h1>
+    <h1 class="display hero-title">Construimos soluciones,<br>creamos futuro</h1>
     <p>Ejecutamos proyectos de construcción, infraestructura y mantenimiento con enfoque en calidad, seguridad y cumplimiento de plazos, brindando soluciones confiables en cada etapa de la obra.</p>
     <div class="hero-actions">
       <a class="btn btn-gold" href="<?= e(base_url('contacto.php')) ?>">Cotiza tu proyecto</a>
@@ -52,7 +52,7 @@ $historiaParts = explode("\n\n", $about['historia']['body']);
   <div class="container scroll-showcase-content reveal">
     <p class="eyebrow">Experiencia en movimiento</p>
     <h2 class="display">Construimos sobre bases sólidas</h2>
-    <p>Maquinaria, planificación y un equipo comprometido para convertir cada proyecto en resultados.</p>
+    <p>Maquinaria, planificación y un equipo multidisciplinario para convertir cada proyecto en resultados.</p>
   </div>
 </section>
 
@@ -78,8 +78,8 @@ $historiaParts = explode("\n\n", $about['historia']['body']);
   <div class="container">
     <div class="section-head reveal">
       <p class="eyebrow">Resultados</p>
-      <h2 class="display">Más de 10 años construyendo futuro</h2>
-      <p class="muted section-lead">Capacidad demostrada en obras públicas y privadas a lo largo del Perú. Estos indicadores resumen nuestro alcance operativo.</p>
+      <h2 class="display">Cinco años construyendo futuro</h2>
+      <p class="muted section-lead">Capacidad demostrada en obras públicas y privadas a lo largo del Perú, con un equipo multidisciplinario. Estos indicadores resumen nuestro alcance operativo.</p>
     </div>
     <div class="stats-grid grid-4 stats-grid-spaced">
       <?php foreach ($stats as $stat): ?>
@@ -139,11 +139,31 @@ $historiaParts = explode("\n\n", $about['historia']['body']);
       <h2 class="display">Hitos que marcan nuestro camino</h2>
     </div>
     <?php
-    $timelineLimit = 4;
+    $timeline = array_slice($timeline, -5);
     require __DIR__ . '/includes/partials/timeline.php';
     ?>
     <div class="actions">
       <a class="btn btn-dark" href="<?= e(base_url('nosotros.php')) ?>">Ver trayectoria completa</a>
+    </div>
+  </div>
+</section>
+
+<section class="section section-live">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow">En ejecución</p>
+      <h2 class="display">Proyectos vigentes de alto impacto</h2>
+      <p class="muted section-lead">Intervenciones en curso para el Instituto Nacional de Salud y el Gobierno Regional de Puno.</p>
+    </div>
+    <div class="grid-2 md-2">
+      <?php foreach (projects_in_progress($projects) as $project): ?>
+        <a class="project-card project-card-live reveal" href="<?= e(base_url('proyecto.php?slug=' . urlencode($project['slug']))) ?>">
+          <img src="<?= e(base_url($project['image'])) ?>" alt="<?= e($project['name']) ?>" loading="lazy" width="640" height="400">
+          <p class="meta"><span class="live-pill">En ejecución</span> <?= e($project['category']) ?> · <?= e((string) $project['year']) ?></p>
+          <h3><?= e($project['name']) ?></h3>
+          <p class="meta"><?= e($project['location']) ?> · <?= e($project['entity']) ?></p>
+        </a>
+      <?php endforeach; ?>
     </div>
   </div>
 </section>

@@ -7,7 +7,7 @@ require __DIR__ . '/includes/header.php';
   <div class="container">
     <p class="eyebrow">Nosotros</p>
     <h1 class="display">Construimos confianza, entregamos resultados</h1>
-    <p>Empresa peruana de construcción con foco en calidad, seguridad y cumplimiento.</p>
+    <p>Empresa peruana de construcción con cinco años de trayectoria, un equipo multidisciplinario y foco en calidad, seguridad y cumplimiento.</p>
   </div>
 </section>
 
@@ -71,13 +71,13 @@ require __DIR__ . '/includes/header.php';
     <div class="section-head">
       <p class="eyebrow">Cobertura</p>
       <h2 class="display">Presencia regional</h2>
-      <p class="coverage-lead">Proyectos ejecutados en seis regiones estratégicas del Perú.</p>
+      <p class="coverage-lead">Proyectos ejecutados en siete regiones del Perú, incluyendo Lima y Moho (Puno).</p>
     </div>
     <div class="coverage-layout">
       <figure class="coverage-map">
         <img
           src="<?= e(base_url('assets/img/cobertura-regional-lcs.jpg')) ?>"
-          alt="Mapa del Perú con cobertura de LCS en Piura, La Libertad, Lima, Callao y Moquegua"
+          alt="Mapa del Perú con cobertura de LCS en Piura, La Libertad, Lima, Callao, Moquegua y Puno"
           loading="lazy"
         >
       </figure>
