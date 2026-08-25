@@ -581,6 +581,24 @@ $videos = [
         'orientation' => 'portrait',
         'description' => 'Video del contrato de obra del Centro de Salud de Moho, Puno.',
     ],
+    [
+        'title' => 'Trujillo — Infraestructura de disposición final',
+        'file' => '',
+        'youtube' => 'https://www.youtube.com/shorts/sH3fB0vMpug',
+        'poster' => 'assets/img/proyectos/limpieza-trujillo.webp',
+        'featured' => false,
+        'orientation' => 'portrait',
+        'description' => 'Entrega de la infraestructura de disposición final en Trujillo (La Libertad).',
+    ],
+    [
+        'title' => 'Relleno sanitario — La Libertad',
+        'file' => '',
+        'youtube' => 'https://www.youtube.com/shorts/m24aWtShIUM',
+        'poster' => 'assets/img/proyectos/limpieza-trujillo.webp',
+        'featured' => false,
+        'orientation' => 'portrait',
+        'description' => 'Inauguración del relleno sanitario en La Libertad, relacionado al proyecto de saneamiento en Trujillo.',
+    ],
 ];
 
 function find_project_by_slug(array $projects, string $slug): ?array
