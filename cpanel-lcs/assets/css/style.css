@@ -1630,23 +1630,56 @@ textarea:focus {
   padding: 0.65rem 1rem;
 }
 
+.video-card {
+  width: 100%;
+  max-width: 380px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin: 0;
+}
+
+.video-card .video-frame {
+  width: 100%;
+  margin-inline: 0;
+}
+
 .video-card h3 {
   margin-top: 0.85rem;
   margin-bottom: 0.35rem;
   font-family: var(--font-display);
   text-transform: uppercase;
-  font-size: 1.35rem;
+  font-size: 1.2rem;
+  line-height: 1.15;
+  width: 100%;
+}
+
+.video-card .meta {
+  width: 100%;
 }
 
 .video-gallery-portrait {
   display: grid;
-  gap: 2rem;
+  gap: 1.75rem;
   justify-content: center;
+  justify-items: center;
+  align-items: start;
+  width: 100%;
+  margin-inline: auto;
 }
 
 @media (min-width: 720px) {
   .video-gallery-portrait {
     grid-template-columns: repeat(2, minmax(0, 380px));
+    gap: 2rem 2.5rem;
+  }
+}
+
+@media (min-width: 1100px) {
+  .video-gallery-portrait {
+    grid-template-columns: repeat(3, minmax(0, 340px));
+    max-width: 1120px;
   }
 }
 
@@ -1705,7 +1738,18 @@ textarea:focus {
 }
 
 .video-grid-spaced {
-  margin-top: 1.5rem;
+  margin-top: 2rem;
+}
+
+.video-gallery-portrait.reveal {
+  /* Una sola animación del bloque; evita desalineación por tarjeta */
+  opacity: 0;
+  transform: translateY(16px);
+}
+
+.video-gallery-portrait.reveal.is-visible {
+  opacity: 1;
+  transform: none;
 }
 
 .form-grid-spaced {

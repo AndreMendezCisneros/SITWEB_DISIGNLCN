@@ -215,10 +215,10 @@ if ($homeFeatured === null && $homeVideos !== []) {
       <?php render_video($homeFeatured, 'video-frame--hero'); ?>
     </div>
     <?php if (count($homeVideos) > 1): ?>
-      <div class="video-gallery-portrait video-grid-spaced">
-        <?php foreach (array_slice($homeVideos, 0, 3) as $video): ?>
+      <div class="video-gallery-portrait video-grid-spaced reveal">
+        <?php foreach ($homeVideos as $video): ?>
           <?php if (($video['title'] ?? '') === ($homeFeatured['title'] ?? '')) continue; ?>
-          <article class="video-card reveal">
+          <article class="video-card">
             <?php render_video($video); ?>
             <h3><?= e($video['title']) ?></h3>
           </article>
