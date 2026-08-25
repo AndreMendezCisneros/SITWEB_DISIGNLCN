@@ -43,9 +43,17 @@ $status = isset($_GET['status']) ? (string) $_GET['status'] : '';
             <span class="contact-label">WhatsApp</span>
             <p><a href="https://wa.me/<?= e(SITE_WHATSAPP) ?>" target="_blank" rel="noopener">Escribir por WhatsApp (+51 <?= e(SITE_PHONE) ?>)</a></p>
           </li>
-          <li>
+          <li class="contact-manager">
             <span class="contact-label">Contacto / gerencia</span>
-            <p><?= e(SITE_MANAGER) ?></p>
+            <div class="contact-manager-row">
+              <img
+                src="<?= e(base_url('assets/img/equipo/gerente-general.png')) ?>"
+                alt="Jorge Luis Luque Solis, gerente general de LCS"
+                width="88"
+                height="88"
+              >
+              <p><?= e(SITE_MANAGER) ?><br><span class="muted">Gerente general</span></p>
+            </div>
           </li>
           <li>
             <span class="contact-label">Horario de atención</span>

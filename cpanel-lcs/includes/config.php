@@ -6,7 +6,7 @@ declare(strict_types=1);
  * Sube toda la carpeta cpanel-lcs al public_html (o subcarpeta).
  */
 
-define('SITE_NAME', 'Luque Construcción y Servicios');
+define('SITE_NAME', 'Luque Construcción y Servicios S.A.C.');
 define('SITE_SHORT', 'LCS');
 define('SITE_EMAIL', 'contactenos@lcs.pe');
 define('SITE_PHONE', '912 260 675');
@@ -100,7 +100,8 @@ function render_video(array $video, string $class = ''): void
     $poster = $video['poster'] ?? '';
     $file = $video['file'] ?? '';
     $yt = youtube_id($video['youtube'] ?? null);
-    $classAttr = trim('video-frame ' . $class);
+    $orientation = ($video['orientation'] ?? '') === 'portrait' ? ' video-frame--portrait' : '';
+    $classAttr = trim('video-frame' . $orientation . ' ' . $class);
 
     if ($file !== '') {
         $absolute = dirname(__DIR__) . '/' . ltrim(str_replace('\\', '/', $file), '/');

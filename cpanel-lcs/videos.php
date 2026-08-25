@@ -44,7 +44,7 @@ if ($featured === null && $ready !== []) {
       <p class="eyebrow">Galería</p>
       <h2 class="display">Más videos</h2>
     </div>
-    <div class="grid-3">
+    <div class="video-gallery-portrait">
       <?php foreach ($videos as $video): ?>
         <?php
           $playable = !empty($video['file']) || youtube_id($video['youtube'] ?? null);

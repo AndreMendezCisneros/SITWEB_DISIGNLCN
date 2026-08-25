@@ -1,5 +1,5 @@
 <?php
-$pageTitle = 'LCS — Luque Construcción y Servicios';
+$pageTitle = 'LCS — Luque Construcción y Servicios S.A.C.';
 $pageDescription = 'Construimos soluciones, creamos futuro. Proyectos de construcción, infraestructura y mantenimiento.';
 require __DIR__ . '/includes/header.php';
 
@@ -22,8 +22,8 @@ $historiaParts = explode("\n\n", $about['historia']['body']);
   </div>
   <div class="hero-overlay"></div>
   <div class="container hero-content">
-    <p class="eyebrow">Luque Construcción y Servicios</p>
-    <h1 class="display hero-title">Construimos soluciones,<br>creamos futuro</h1>
+    <h1 class="display hero-title">Luque Construcción<br>y Servicios S.A.C.</h1>
+    <p class="hero-tagline">Construimos soluciones, creamos futuro</p>
     <p>Ejecutamos proyectos de construcción, infraestructura y mantenimiento con enfoque en calidad, seguridad y cumplimiento de plazos, brindando soluciones confiables en cada etapa de la obra.</p>
     <div class="hero-actions">
       <a class="btn btn-gold" href="<?= e(base_url('contacto.php')) ?>">Cotiza tu proyecto</a>
@@ -215,7 +215,7 @@ if ($homeFeatured === null && $homeVideos !== []) {
       <?php render_video($homeFeatured, 'video-frame--hero'); ?>
     </div>
     <?php if (count($homeVideos) > 1): ?>
-      <div class="grid-3 video-grid-spaced">
+      <div class="video-gallery-portrait video-grid-spaced">
         <?php foreach (array_slice($homeVideos, 0, 3) as $video): ?>
           <?php if (($video['title'] ?? '') === ($homeFeatured['title'] ?? '')) continue; ?>
           <article class="video-card reveal">

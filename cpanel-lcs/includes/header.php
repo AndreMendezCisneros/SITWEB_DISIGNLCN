@@ -4,7 +4,7 @@ require_once __DIR__ . '/data.php';
 
 $pageTitle = $pageTitle ?? SITE_NAME;
 $pageDescription = $pageDescription ?? 'Ejecutamos proyectos de construcción, infraestructura y mantenimiento con enfoque en calidad, seguridad y cumplimiento de plazos.';
-$assetV = '20260824lcs';
+$assetV = '20260824color';
 $isHome = current_page() === 'index';
 ?>
 <!DOCTYPE html>
@@ -32,7 +32,7 @@ $isHome = current_page() === 'index';
 <header class="site-header">
   <div class="container header-inner">
     <a class="brand" href="<?= e(base_url('index.php')) ?>">
-      <img src="<?= e(base_url('assets/img/brand/logo_lcs_sf.png')) ?>" alt="LCS — Luque Construcción y Servicios" width="320" height="72" decoding="async">
+      <img src="<?= e(base_url('assets/img/brand/logo_lcs_sf.png')) ?>" alt="<?= e(SITE_NAME) ?>" width="320" height="72" decoding="async">
     </a>
     <nav class="nav" aria-label="Principal">
       <a class="<?= e(is_active('index')) ?>" href="<?= e(base_url('index.php')) ?>">Inicio</a>

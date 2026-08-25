@@ -50,6 +50,9 @@ web/next-env.d.ts
 # Contact form dumps (cPanel PHP)
 cpanel-lcs/mensajes/*.json
 !cpanel-lcs/mensajes/.gitkeep
+cpanel-lcs/_drive_proyectos/
+cpanel-lcs/_drive_manifest.json
+cpanel-lcs/tools/
 
 # Misc
 .pnpm-store/

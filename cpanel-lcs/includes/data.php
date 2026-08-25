@@ -22,22 +22,17 @@ $pillars = [
 
 $stats = [
     ['number' => 5, 'suffix' => '', 'label' => 'Años de trayectoria operativa'],
-    ['number' => 7, 'suffix' => '', 'label' => 'Regiones con presencia'],
-    ['number' => 8, 'suffix' => '+', 'label' => 'Proyectos públicos documentados'],
+    ['number' => 5, 'suffix' => '', 'label' => 'Regiones con presencia'],
+    ['number' => 8, 'suffix' => '', 'label' => 'Proyectos públicos documentados'],
     ['number' => null, 'suffix' => '', 'value' => 'Calidad', 'label' => 'Enfoque operativo'],
 ];
 
 /** Trayectoria LCS — editable */
 $timeline = [
     [
-        'year' => '2014',
+        'year' => '2021',
         'title' => 'Inicio de operaciones',
-        'body' => 'LCS nace con foco en optimización de procesos constructivos y obras de infraestructura.',
-    ],
-    [
-        'year' => '2018',
-        'title' => 'Expansión regional',
-        'body' => 'Ampliamos presencia hacia regiones del norte y sur del Perú con contratos municipales.',
+        'body' => 'Luque Construcción y Servicios S.A.C. inicia operaciones con registro vigente como proveedor de bienes, proveedor de servicios y ejecutor de obras.',
     ],
     [
         'year' => '2021',
@@ -93,14 +88,14 @@ $testimonials = [
 ];
 
 $workHighlights = [
-    ['label' => 'Obras de edificación y rehabilitación', 'value' => 'Educación, mercados y equipamiento'],
+    ['label' => 'Obras de edificación y rehabilitación', 'value' => 'Educación, salud, mercados y equipamiento'],
     ['label' => 'Infraestructura vial y bermas', 'value' => 'Mezcla asfáltica y accesos'],
     ['label' => 'Prevención de riesgos', 'value' => 'Muros de contención'],
     ['label' => 'Infraestructura deportiva', 'value' => 'Callao y Talara'],
-    ['label' => 'Saneamiento y limpieza pública', 'value' => 'Trujillo y afines'],
+    ['label' => 'Saneamiento y limpieza pública', 'value' => '9 distritos de la provincia de Trujillo'],
     ['label' => 'Contratos con entidades públicas', 'value' => 'Municipios y gobierno regional'],
-    ['label' => 'Cobertura nacional selectiva', 'value' => 'Lima, Callao, La Libertad, Moquegua, Piura y Puno'],
-    ['label' => 'Gestión integral de obra', 'value' => 'Planificación, ejecución y cierre'],
+    ['label' => 'Cobertura nacional selectiva', 'value' => 'Provincia de Lima y Provincia de Moho (Puno), entre otras'],
+    ['label' => 'Gestión integral de obra', 'value' => 'Planificación, ejecución y puesta en marcha'],
 ];
 
 $about = [
@@ -201,8 +196,6 @@ $projects = [
         'image' => 'assets/img/proyectos/mercado-el-algarrobal.webp',
         'gallery' => [
             'assets/img/proyectos/mercado-el-algarrobal.webp',
-            'assets/img/proyectos/campolo-callao.webp',
-            'assets/img/proyectos/bermas-samegua.webp',
         ],
         'before' => '',
         'after' => '',
@@ -222,9 +215,17 @@ $projects = [
         'image' => 'assets/img/proyectos/bermas-samegua.webp',
         'gallery' => [
             'assets/img/proyectos/bermas-samegua.webp',
-            'assets/img/proyectos/limpieza-trujillo.webp',
+            'assets/img/proyectos/bermas-samegua-1.webp',
+            'assets/img/proyectos/bermas-samegua-2.webp',
+            'assets/img/proyectos/bermas-samegua-3.webp',
+            'assets/img/proyectos/bermas-samegua-4.webp',
+            'assets/img/proyectos/bermas-samegua-5.webp',
+            'assets/img/proyectos/bermas-samegua-6.webp',
+            'assets/img/proyectos/bermas-samegua-7.webp',
+            'assets/img/proyectos/bermas-samegua-8.webp',
+            'assets/img/proyectos/bermas-samegua-9.webp',
         ],
-        'before' => 'assets/img/proyectos/limpieza-trujillo.webp',
+        'before' => 'assets/img/proyectos/bermas-samegua-1.webp',
         'after' => 'assets/img/proyectos/bermas-samegua.webp',
         'description' => 'Suministro y construcción de bermas con mezcla asfáltica a todo costo, mejorando la seguridad y el acabado de la vía en un plazo acotado de ejecución.',
     ],
@@ -262,10 +263,10 @@ $projects = [
         'image' => 'assets/img/proyectos/campolo-callao.webp',
         'gallery' => [
             'assets/img/proyectos/campolo-callao.webp',
-            'assets/img/proyectos/losas-talara.webp',
+            'assets/img/proyectos/campolo-callao-poster.webp',
         ],
-        'before' => 'assets/img/proyectos/losas-talara.webp',
-        'after' => 'assets/img/proyectos/campolo-callao.webp',
+        'before' => '',
+        'after' => '',
         'description' => 'Renovación de infraestructura deportiva en el campo deportivo Campolo Alcalde, mejorando las condiciones de uso deportivo y recreativo para la comunidad.',
     ],
     [
@@ -282,7 +283,14 @@ $projects = [
         'image' => 'assets/img/proyectos/limpieza-trujillo.webp',
         'gallery' => [
             'assets/img/proyectos/limpieza-trujillo.webp',
-            'assets/img/proyectos/bermas-samegua.webp',
+            'assets/img/proyectos/limpieza-trujillo-1.webp',
+            'assets/img/proyectos/limpieza-trujillo-2.webp',
+            'assets/img/proyectos/limpieza-trujillo-3.webp',
+            'assets/img/proyectos/limpieza-trujillo-4.webp',
+            'assets/img/proyectos/limpieza-trujillo-5.webp',
+            'assets/img/proyectos/limpieza-trujillo-6.webp',
+            'assets/img/proyectos/limpieza-trujillo-7.webp',
+            'assets/img/proyectos/limpieza-trujillo-8.webp',
         ],
         'before' => '',
         'after' => '',
@@ -333,7 +341,7 @@ $projects = [
         'name' => 'Remodelación de edificio de laboratorios y equipamiento — INS',
         'slug' => 'ins-laboratorios',
         'category' => 'Salud',
-        'location' => 'Lima, Lima',
+        'location' => 'Chorrillos, Lima',
         'entity' => 'Instituto Nacional de Salud',
         'year' => 2025,
         'amount' => null,
@@ -341,10 +349,15 @@ $projects = [
         'condition' => 'En ejecución',
         'featured' => true,
         'in_progress' => true,
-        'image' => 'assets/img/proyectos/ie-20158-mala.webp',
+        'image' => 'assets/img/proyectos/ins-laboratorios.webp',
         'gallery' => [
-            'assets/img/proyectos/ie-20158-mala.webp',
-            'assets/img/proyectos/mercado-el-algarrobal.webp',
+            'assets/img/proyectos/ins-laboratorios.webp',
+            'assets/img/proyectos/ins-laboratorios-1.webp',
+            'assets/img/proyectos/ins-laboratorios-2.webp',
+            'assets/img/proyectos/ins-laboratorios-3.webp',
+            'assets/img/proyectos/ins-laboratorios-4.webp',
+            'assets/img/proyectos/ins-laboratorios-6.webp',
+            'assets/img/proyectos/ins-laboratorios-7.webp',
         ],
         'before' => '',
         'after' => '',
@@ -362,10 +375,9 @@ $projects = [
         'condition' => 'En ejecución',
         'featured' => true,
         'in_progress' => true,
-        'image' => 'assets/img/proyectos/mercado-el-algarrobal.webp',
+        'image' => 'assets/img/proyectos/centro-salud-moho-puno.webp',
         'gallery' => [
-            'assets/img/proyectos/mercado-el-algarrobal.webp',
-            'assets/img/proyectos/ie-20158-mala.webp',
+            'assets/img/proyectos/centro-salud-moho-puno.webp',
         ],
         'before' => '',
         'after' => '',
@@ -406,12 +418,12 @@ $clients = [
     ],
     [
         'name' => 'Instituto Nacional de Salud',
-        'logo' => 'assets/img/clientes/ins_sf.png',
+        'logo' => 'assets/img/clientes/ins_casco_sf.png',
         'website' => 'https://www.gob.pe/ins',
     ],
     [
         'name' => 'Gobierno Regional de Puno',
-        'logo' => 'assets/img/clientes/puno_sf.png',
+        'logo' => 'assets/img/clientes/puno_casco_sf.png',
         'website' => 'https://www.gob.pe/regionpuno',
     ],
 ];
@@ -552,36 +564,22 @@ $regions = [
  */
 $videos = [
     [
-        'title' => 'Obra en ejecución — LCS',
-        'file' => 'assets/video/lcs.mp4',
+        'title' => 'Inauguración — Campo deportivo Campolo Alcalde',
+        'file' => 'assets/video/campolo-inauguracion.mp4',
         'youtube' => '',
-        'poster' => '',
+        'poster' => 'assets/img/proyectos/campolo-callao-poster.webp',
         'featured' => true,
-        'description' => 'Video institucional de LCS en obra.',
+        'orientation' => 'portrait',
+        'description' => 'Video de inauguración de la infraestructura deportiva Campolo Alcalde (Callao).',
     ],
     [
-        'title' => 'Infraestructura educativa',
-        'file' => '',
-        'youtube' => '', // ej: https://www.youtube.com/watch?v=XXXXXXXXXXX
-        'poster' => 'assets/img/proyectos/ie-20158-mala.webp',
-        'featured' => false,
-        'description' => 'Agrega aquí el video del proyecto IE Dos de Mayo (YouTube o MP4).',
-    ],
-    [
-        'title' => 'Equipamiento urbano',
-        'file' => '',
+        'title' => 'Centro de Salud de Moho — GORE Puno',
+        'file' => 'assets/video/moho-puno-contrato.mp4',
         'youtube' => '',
-        'poster' => 'assets/img/proyectos/mercado-el-algarrobal.webp',
+        'poster' => 'assets/img/proyectos/centro-salud-moho-puno.webp',
         'featured' => false,
-        'description' => 'Agrega aquí el video del Mercado de Abastos.',
-    ],
-    [
-        'title' => 'Infraestructura deportiva',
-        'file' => '',
-        'youtube' => '',
-        'poster' => 'assets/img/proyectos/campolo-callao.webp',
-        'featured' => false,
-        'description' => 'Agrega aquí el video de Campolo / losas deportivas.',
+        'orientation' => 'portrait',
+        'description' => 'Video del contrato de obra del Centro de Salud de Moho, Puno.',
     ],
 ];
 

@@ -1,9 +1,10 @@
 </main>
 <footer class="site-footer">
   <div class="container footer-grid">
-    <div>
-      <p class="footer-brand">LCS</p>
-      <p class="muted"><?= e(SITE_NAME) ?></p>
+    <div class="footer-brand-block">
+      <a class="footer-logo" href="<?= e(base_url('index.php')) ?>">
+        <img src="<?= e(base_url('assets/img/brand/logo_lcs_sf.png')) ?>" alt="<?= e(SITE_NAME) ?>" width="280" height="64" decoding="async">
+      </a>
       <p class="muted" style="margin-top:0.75rem">Gerente general: <?= e(SITE_MANAGER) ?></p>
     </div>
     <div class="footer-links">
@@ -20,7 +21,7 @@
     </div>
   </div>
   <div class="container footer-bottom">
-    © <?= date('Y') ?> <?= e(SITE_SHORT) ?>. Todos los derechos reservados.
+    © <?= date('Y') ?> <?= e(SITE_NAME) ?>. Todos los derechos reservados.
   </div>
 </footer>
 
@@ -41,6 +42,9 @@ $pageScript = current_page();
 <?php if ($pageScript === 'proyecto'): ?>
   <script src="<?= e(base_url('assets/js/lightbox.js')) ?>?v=<?= e($assetV) ?>" defer></script>
   <script src="<?= e(base_url('assets/js/before-after.js')) ?>?v=<?= e($assetV) ?>" defer></script>
+<?php endif; ?>
+<?php if ($pageScript === 'nosotros'): ?>
+  <script src="<?= e(base_url('assets/js/coverage-map.js')) ?>?v=<?= e($assetV) ?>" defer></script>
 <?php endif; ?>
 </body>
 </html>
