@@ -6,7 +6,7 @@ require __DIR__ . '/includes/header.php';
 $ready = videos_ready($videos);
 $featured = null;
 foreach ($videos as $video) {
-    if (!empty($video['featured']) && (!empty($video['file']) || youtube_id($video['youtube'] ?? null))) {
+    if (!empty($video['featured']) && video_is_playable($video)) {
         $featured = $video;
         break;
     }
@@ -19,7 +19,7 @@ if ($featured === null && $ready !== []) {
   <div class="container">
     <p class="eyebrow">Multimedia</p>
     <h1 class="display">Videos de obra</h1>
-    <p>Conoce el trabajo de LCS en campo. Puedes reproducir archivos locales o videos de YouTube.</p>
+    <p>Conoce el trabajo de LCS en campo. Puedes reproducir archivos locales, YouTube o Facebook.</p>
   </div>
 </section>
 
@@ -47,7 +47,7 @@ if ($featured === null && $ready !== []) {
     <div class="video-gallery-portrait">
       <?php foreach ($videos as $video): ?>
         <?php
-          $playable = !empty($video['file']) || youtube_id($video['youtube'] ?? null);
+          $playable = video_is_playable($video);
           if ($featured && ($video['title'] ?? '') === ($featured['title'] ?? '') && $playable) {
               continue;
           }

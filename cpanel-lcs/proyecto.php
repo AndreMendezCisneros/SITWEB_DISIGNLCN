@@ -3,6 +3,10 @@ require_once __DIR__ . '/includes/config.php';
 require_once __DIR__ . '/includes/data.php';
 
 $slug = isset($_GET['slug']) ? trim((string) $_GET['slug']) : '';
+if ($slug === 'limpieza-trujillo') {
+    header('Location: ' . base_url('proyecto.php?slug=planta-valorizacion-residuos'), true, 301);
+    exit;
+}
 $project = $slug !== '' ? find_project_by_slug($projects, $slug) : null;
 
 if ($project === null) {
@@ -19,6 +23,8 @@ if ($gallery === [] && !empty($project['image'])) {
     $gallery = [$project['image']];
 }
 $hasBeforeAfter = !empty($project['before']) && !empty($project['after']);
+$projectVideo = $project['video'] ?? null;
+$hasProjectVideo = is_array($projectVideo) && video_is_playable($projectVideo);
 ?>
 <section class="page-hero">
   <div class="container">
@@ -92,6 +98,23 @@ $hasBeforeAfter = !empty($project['before']) && !empty($project['after']);
           <img src="<?= e(base_url($img)) ?>" alt="<?= e($project['name']) ?>" loading="lazy" width="640" height="400">
         </a>
       <?php endforeach; ?>
+    </div>
+  </div>
+</section>
+<?php endif; ?>
+
+<?php if ($hasProjectVideo): ?>
+<section class="section section-black">
+  <div class="container">
+    <div class="section-head reveal">
+      <p class="eyebrow">Video</p>
+      <h2 class="display"><?= e($projectVideo['title'] ?? 'Video de obra') ?></h2>
+      <?php if (!empty($projectVideo['description'])): ?>
+        <p class="muted" style="margin-top:0.85rem;max-width:40rem"><?= e($projectVideo['description']) ?></p>
+      <?php endif; ?>
+    </div>
+    <div class="reveal">
+      <?php render_video($projectVideo, 'video-frame--hero'); ?>
     </div>
   </div>
 </section>

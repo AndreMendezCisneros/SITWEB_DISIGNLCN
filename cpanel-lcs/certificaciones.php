@@ -61,14 +61,6 @@ $meta = $certificationMeta;
               <dt>Acreditación</dt>
               <dd><?= e($cert['accreditation']) ?></dd>
             </div>
-            <div>
-              <dt>1.ª evaluación periódica</dt>
-              <dd><?= e($cert['review_1']) ?></dd>
-            </div>
-            <div>
-              <dt>2.ª evaluación periódica</dt>
-              <dd><?= e($cert['review_2']) ?></dd>
-            </div>
           </dl>
         </article>
       <?php endforeach; ?>
