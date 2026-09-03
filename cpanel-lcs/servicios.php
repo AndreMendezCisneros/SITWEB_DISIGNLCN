@@ -7,7 +7,7 @@ require __DIR__ . '/includes/header.php';
   <div class="container">
     <p class="eyebrow">Servicios</p>
     <h1 class="display">Soluciones integrales de construcción</h1>
-    <p>Desde edificaciones y vías hasta saneamiento, hidráulica y contratos municipales.</p>
+    <p>Desde edificaciones y vías hasta saneamiento y contratos municipales.</p>
   </div>
 </section>
 

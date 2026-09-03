@@ -61,8 +61,9 @@ $historiaParts = explode("\n\n", $about['historia']['body']);
     <div class="reveal">
       <p class="eyebrow">Sobre LCS</p>
       <h2 class="display">Construimos con confianza</h2>
-      <p class="text-muted-light"><?= e($historiaParts[0] ?? '') ?></p>
-      <p class="text-muted-light">Transformamos visión en realidad: desde infraestructura educativa y deportiva hasta saneamiento, vías y contratos municipales, con un firme compromiso en excelencia operativa.</p>
+      <?php foreach ($historiaParts as $para): ?>
+        <p class="text-muted-light"><?= e($para) ?></p>
+      <?php endforeach; ?>
       <div class="actions">
         <a class="btn btn-dark" href="<?= e(base_url('nosotros.php')) ?>">Conoce nuestra empresa</a>
         <a class="btn btn-outline-dark" href="<?= e(base_url('contacto.php')) ?>">Cotiza tu proyecto</a>
@@ -100,7 +101,7 @@ $historiaParts = explode("\n\n", $about['historia']['body']);
     </div>
     <div class="highlights-grid grid-4">
       <?php foreach ($workHighlights as $item): ?>
-        <div class="highlight-card reveal">
+        <div class="highlight-card reveal<?= !empty($item['wide']) ? ' highlight-card--wide' : '' ?>">
           <p class="eyebrow highlight-label"><?= e($item['label']) ?></p>
           <p class="highlight-value"><?= e($item['value']) ?></p>
         </div>
@@ -194,7 +195,7 @@ $historiaParts = explode("\n\n", $about['historia']['body']);
 $homeVideos = videos_ready($videos);
 $homeFeatured = null;
 foreach ($videos as $video) {
-    if (!empty($video['featured']) && (!empty($video['file']) || youtube_id($video['youtube'] ?? null))) {
+    if (!empty($video['featured']) && video_is_playable($video)) {
         $homeFeatured = $video;
         break;
     }

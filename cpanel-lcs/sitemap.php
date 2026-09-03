@@ -22,7 +22,6 @@ $urls = [
     ['loc' => '/proyecto.php?slug=bermas-samegua', 'priority' => '0.7', 'changefreq' => 'monthly'],
     ['loc' => '/proyecto.php?slug=muro-buena-vista', 'priority' => '0.7', 'changefreq' => 'monthly'],
     ['loc' => '/proyecto.php?slug=campolo-callao', 'priority' => '0.7', 'changefreq' => 'monthly'],
-    ['loc' => '/proyecto.php?slug=limpieza-trujillo', 'priority' => '0.7', 'changefreq' => 'monthly'],
     ['loc' => '/proyecto.php?slug=losas-talara', 'priority' => '0.7', 'changefreq' => 'monthly'],
     ['loc' => '/proyecto.php?slug=planta-valorizacion-residuos', 'priority' => '0.7', 'changefreq' => 'monthly'],
     ['loc' => '/proyecto.php?slug=ins-laboratorios', 'priority' => '0.8', 'changefreq' => 'weekly'],

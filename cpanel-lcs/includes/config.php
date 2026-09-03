@@ -90,9 +90,51 @@ function youtube_id(?string $value): ?string
     return null;
 }
 
+/** URL canónica de video/reel de Facebook, o null. */
+function facebook_video_url(?string $value): ?string
+{
+    if ($value === null) {
+        return null;
+    }
+    $value = trim($value);
+    if ($value === '') {
+        return null;
+    }
+    if (preg_match('#facebook\.com/reel/(\d+)#i', $value, $m)) {
+        return 'https://www.facebook.com/reel/' . $m[1];
+    }
+    if (preg_match('#facebook\.com/(?:watch/?\?.*[?&]?v=|video\.php\?.*[?&]?v=|[^/]+/videos/)(\d+)#i', $value, $m)) {
+        return 'https://www.facebook.com/watch/?v=' . $m[1];
+    }
+    if (preg_match('#[?&]v=(\d+)#', $value, $m) && stripos($value, 'facebook.com') !== false) {
+        return 'https://www.facebook.com/watch/?v=' . $m[1];
+    }
+    return null;
+}
+
+function facebook_embed_url(?string $value): ?string
+{
+    $canonical = facebook_video_url($value);
+    if ($canonical === null) {
+        return null;
+    }
+    return 'https://www.facebook.com/plugins/video.php?href=' . rawurlencode($canonical) . '&show_text=false';
+}
+
+function video_is_playable(array $video): bool
+{
+    if (!empty($video['file'])) {
+        return true;
+    }
+    if (youtube_id($video['youtube'] ?? null) !== null) {
+        return true;
+    }
+    return facebook_embed_url($video['facebook'] ?? null) !== null;
+}
+
 /**
- * Renderiza un video (archivo local MP4/WebM o YouTube).
- * @param array{title?:string,file?:string,youtube?:string,poster?:string} $video
+ * Renderiza un video (archivo local MP4/WebM, YouTube o Facebook).
+ * @param array{title?:string,file?:string,youtube?:string,facebook?:string,poster?:string} $video
  */
 function render_video(array $video, string $class = ''): void
 {
@@ -100,6 +142,7 @@ function render_video(array $video, string $class = ''): void
     $poster = $video['poster'] ?? '';
     $file = $video['file'] ?? '';
     $yt = youtube_id($video['youtube'] ?? null);
+    $fb = facebook_embed_url($video['facebook'] ?? null);
     $orientation = ($video['orientation'] ?? '') === 'portrait' ? ' video-frame--portrait' : '';
     $classAttr = trim('video-frame' . $orientation . ' ' . $class);
 
@@ -122,6 +165,13 @@ function render_video(array $video, string $class = ''): void
         $embed = 'https://www.youtube.com/embed/' . rawurlencode($yt) . '?rel=0&modestbranding=1';
         echo '<div class="' . e($classAttr) . '">';
         echo '<iframe src="' . e($embed) . '" title="' . e($title) . '" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+        echo '</div>';
+        return;
+    }
+
+    if ($fb !== null) {
+        echo '<div class="' . e($classAttr) . '">';
+        echo '<iframe src="' . e($fb) . '" title="' . e($title) . '" loading="lazy" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowfullscreen></iframe>';
         echo '</div>';
         return;
     }

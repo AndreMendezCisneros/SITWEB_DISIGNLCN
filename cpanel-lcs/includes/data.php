@@ -22,7 +22,7 @@ $pillars = [
 
 $stats = [
     ['number' => 5, 'suffix' => '', 'label' => 'Años de trayectoria operativa'],
-    ['number' => 5, 'suffix' => '', 'label' => 'Regiones con presencia'],
+    ['number' => 8, 'suffix' => '', 'label' => 'Regiones con presencia'],
     ['number' => 8, 'suffix' => '', 'label' => 'Proyectos públicos documentados'],
     ['number' => null, 'suffix' => '', 'value' => 'Calidad', 'label' => 'Enfoque operativo'],
 ];
@@ -63,7 +63,7 @@ $timeline = [
 
 /** Cifras de seguridad — editables (placeholders hasta validación interna) */
 $safetyStats = [
-    ['number' => 12000, 'suffix' => '+', 'label' => 'Horas-hombre sin incidentes mayores'],
+    ['number' => 100, 'suffix' => ' mil+', 'label' => 'Horas-hombre sin incidentes mayores'],
     ['number' => 48, 'suffix' => '', 'label' => 'Capacitaciones SST al año'],
     ['number' => 100, 'suffix' => '%', 'label' => 'Obras con plan de seguridad'],
 ];
@@ -94,14 +94,14 @@ $workHighlights = [
     ['label' => 'Infraestructura deportiva', 'value' => 'Callao y Talara'],
     ['label' => 'Saneamiento y limpieza pública', 'value' => '9 distritos de la provincia de Trujillo'],
     ['label' => 'Contratos con entidades públicas', 'value' => 'Municipios y gobierno regional'],
-    ['label' => 'Cobertura nacional selectiva', 'value' => 'Provincia de Lima y Provincia de Moho (Puno), entre otras'],
+    ['label' => 'Cobertura nacional selectiva', 'value' => 'Talara, Trujillo, Lima, Cañete, Callao, Ilo, Mariscal Nieto y Moho', 'wide' => true],
     ['label' => 'Gestión integral de obra', 'value' => 'Planificación, ejecución y puesta en marcha'],
 ];
 
 $about = [
     'historia' => [
         'title' => 'Quiénes somos',
-        'body' => "Somos una empresa peruana que nació con la idea de desarrollarse en la industria de la construcción, diferenciándose por la optimización constante en los procesos constructivos de diversos proyectos que hacen posible el desarrollo de nuestro país.\n\nEjecutamos obras de edificaciones, saneamiento, viales, electromecánicas, telecomunicaciones, irrigación y afines, con un equipo multidisciplinario comprometido con la excelencia técnica y la responsabilidad social.",
+        'body' => "Somos una empresa peruana que nació con la idea de desarrollarse en la industria de la construcción, diferenciándonos de otras por la optimización constante en los procesos constructivos de diversos proyectos que hacen posible el desarrollo de nuestro país.\n\nEjecutamos obras de edificaciones, saneamiento, viales, electromecánicas, telecomunicaciones, irrigación y afines.",
     ],
     'mision' => [
         'title' => 'Nuestra misión',
@@ -144,16 +144,6 @@ $services = [
         'image' => 'assets/img/proyectos/limpieza-trujillo.webp',
     ],
     [
-        'title' => 'Obras hidráulicas',
-        'description' => 'Proyectos hidráulicos con ingeniería especializada, orientados a controlar riesgos, optimizar recursos hídricos y proteger zonas vulnerables.',
-        'image' => 'assets/img/proyectos/muro-buena-vista.webp',
-    ],
-    [
-        'title' => 'Obras hidroenergéticas',
-        'description' => 'Participación en infraestructura hidroenergética y afines, aportando capacidad constructiva y coordinación multidisciplinaria.',
-        'image' => 'assets/img/proyectos/petroperu-talara.webp',
-    ],
-    [
         'title' => 'Consultoría y suministro',
         'description' => 'Prestación de servicios, suministro de bienes y consultoría para complementar la ejecución de obra y fortalecer la toma de decisiones técnicas del cliente.',
         'image' => 'assets/img/hero-poster.jpg',
@@ -172,13 +162,12 @@ $projects = [
         'duration_days' => 180,
         'condition' => 'Ejecutada',
         'featured' => true,
-        'image' => 'assets/img/proyectos/ie-mala-nueva.webp',
+        'image' => 'assets/img/proyectos/ie-20158-mala-interior.jpeg',
         'gallery' => [
-            'assets/img/proyectos/ie-mala-nueva.webp',
-            'assets/img/proyectos/ie-20158-mala.webp',
+            'assets/img/proyectos/ie-20158-mala-interior.jpeg',
         ],
         'before' => '',
-        'after' => 'assets/img/proyectos/ie-mala-nueva.webp',
+        'after' => '',
         'description' => 'Rehabilitación de los servicios educativos de la Institución Educativa N°20158. Intervención integral orientada a recuperar condiciones de infraestructura para la comunidad educativa, con plazos y estándares de obra pública.',
     ],
     [
@@ -199,6 +188,15 @@ $projects = [
         'before' => '',
         'after' => '',
         'description' => 'Ejecución de obra para la construcción del mercado de abastos, fortaleciendo el comercio local y el equipamiento urbano del distrito con una intervención de gran escala.',
+        'video' => [
+            'title' => 'Video de obra — Mercado de Abastos El Algarrobal',
+            'file' => '',
+            'youtube' => '',
+            'facebook' => 'https://www.facebook.com/reel/1562623288370226',
+            'poster' => 'assets/img/proyectos/mercado-el-algarrobal.webp',
+            'orientation' => 'portrait',
+            'description' => 'Video de obra publicado en Facebook.',
+        ],
     ],
     [
         'name' => 'Bermas con mezcla asfáltica',
@@ -239,9 +237,10 @@ $projects = [
         'duration_days' => 75,
         'condition' => 'Ejecutada',
         'featured' => true,
-        'image' => 'assets/img/proyectos/muro-mala.webp',
+        'image' => 'assets/img/proyectos/muro-buena-vista-secundaria.jpeg',
         'gallery' => [
-            'assets/img/proyectos/muro-mala.webp',
+            'assets/img/proyectos/muro-buena-vista-secundaria.jpeg',
+            'assets/img/proyectos/muro-buena-vista.webp',
         ],
         'before' => '',
         'after' => '',
@@ -269,8 +268,8 @@ $projects = [
         'description' => 'Renovación de infraestructura deportiva en el campo deportivo Campolo Alcalde, mejorando las condiciones de uso deportivo y recreativo para la comunidad.',
     ],
     [
-        'name' => 'Limpieza pública Trujillo',
-        'slug' => 'limpieza-trujillo',
+        'name' => 'Planta de Valorización y Disposición final de Residuos Sólidos',
+        'slug' => 'planta-valorizacion-residuos',
         'category' => 'Saneamiento',
         'location' => 'Trujillo, La Libertad',
         'entity' => 'UE 003 Gestión Integral de la Calidad Ambiental',
@@ -293,7 +292,7 @@ $projects = [
         ],
         'before' => '',
         'after' => '',
-        'description' => 'Mejoramiento y ampliación del servicio de limpieza pública en la ciudad de Trujillo y disposición final para 9 distritos de la provincia, una intervención de alto impacto ambiental y operativo.',
+        'description' => 'Planta de valorización y disposición final de residuos sólidos en Trujillo: mejoramiento y ampliación del servicio de limpieza pública y disposición final para 9 distritos de la provincia, una intervención de alto impacto ambiental y operativo.',
     ],
     [
         'name' => 'Losas deportivas Pariñas',
@@ -321,27 +320,6 @@ $projects = [
         'before' => '',
         'after' => '',
         'description' => 'Servicio de acondicionamiento de las losas deportivas en el distrito Pariñas, Talara, ejecutado para Petróleos del Perú S.A., mejorando infraestructura deportiva comunitaria.',
-    ],
-    [
-        'name' => 'Planta de Valorización y Disposición final de Residuos Sólidos',
-        'slug' => 'planta-valorizacion-residuos',
-        'category' => 'Saneamiento',
-        'location' => 'Perú',
-        'entity' => 'Entidad pública',
-        'year' => 2024,
-        'amount' => null,
-        'duration_days' => null,
-        'condition' => 'Ejecutada',
-        'featured' => true,
-        'in_progress' => false,
-        'image' => 'assets/img/proyectos/limpieza-trujillo.webp',
-        'gallery' => [
-            'assets/img/proyectos/limpieza-trujillo.webp',
-            'assets/img/proyectos/bermas-samegua.webp',
-        ],
-        'before' => '',
-        'after' => '',
-        'description' => 'Obra de saneamiento para la valorización y disposición final de residuos sólidos, con enfoque ambiental y de servicio público.',
     ],
     [
         'name' => 'Remodelación de edificio de laboratorios y equipamiento — INS',
@@ -562,26 +540,26 @@ $regions = [
 /**
  * Videos del sitio.
  * - file: ruta relativa MP4 en assets/video/ (recomendado en cPanel)
- * - youtube: ID o URL de YouTube (alternativa sin subir archivo pesado)
+ * - youtube: ID o URL de YouTube
+ * - facebook: URL de watch o reel (embed oficial, sin descargar)
  * - poster: imagen de portada
- *
- * Para agregar más: copia un .mp4 a assets/video/ y añade una fila aquí,
- * o pega el link de YouTube en "youtube".
  */
 $videos = [
     [
-        'title' => 'Inauguración — Campo deportivo Campolo Alcalde',
-        'file' => 'assets/video/campolo-inauguracion.mp4',
-        'youtube' => '',
-        'poster' => 'assets/img/proyectos/campolo-callao-poster.webp',
+        'title' => 'Relleno sanitario — La Libertad',
+        'file' => '',
+        'youtube' => 'https://www.youtube.com/shorts/m24aWtShIUM',
+        'facebook' => '',
+        'poster' => 'assets/img/proyectos/limpieza-trujillo.webp',
         'featured' => true,
         'orientation' => 'portrait',
-        'description' => 'Video de inauguración de la infraestructura deportiva Campolo Alcalde (Callao).',
+        'description' => 'Inauguración del relleno sanitario en La Libertad, relacionado al proyecto de saneamiento en Trujillo.',
     ],
     [
         'title' => 'Centro de Salud de Moho — GORE Puno',
         'file' => 'assets/video/moho-puno-contrato.mp4',
         'youtube' => '',
+        'facebook' => '',
         'poster' => 'assets/img/proyectos/centro-salud-moho-puno.webp',
         'featured' => false,
         'orientation' => 'portrait',
@@ -591,19 +569,51 @@ $videos = [
         'title' => 'Trujillo — Infraestructura de disposición final',
         'file' => '',
         'youtube' => 'https://www.youtube.com/shorts/sH3fB0vMpug',
+        'facebook' => '',
         'poster' => 'assets/img/proyectos/limpieza-trujillo.webp',
         'featured' => false,
         'orientation' => 'portrait',
         'description' => 'Entrega de la infraestructura de disposición final en Trujillo (La Libertad).',
     ],
     [
-        'title' => 'Relleno sanitario — La Libertad',
-        'file' => '',
-        'youtube' => 'https://www.youtube.com/shorts/m24aWtShIUM',
-        'poster' => 'assets/img/proyectos/limpieza-trujillo.webp',
+        'title' => 'Inauguración — Campo deportivo Campolo Alcalde',
+        'file' => 'assets/video/campolo-inauguracion.mp4',
+        'youtube' => '',
+        'facebook' => '',
+        'poster' => 'assets/img/proyectos/campolo-callao-poster.webp',
         'featured' => false,
         'orientation' => 'portrait',
-        'description' => 'Inauguración del relleno sanitario en La Libertad, relacionado al proyecto de saneamiento en Trujillo.',
+        'description' => 'Video de inauguración de la infraestructura deportiva Campolo Alcalde (Callao).',
+    ],
+    [
+        'title' => 'Recuperación de losa deportiva — Parque 53 (Petroperú)',
+        'file' => '',
+        'youtube' => '',
+        'facebook' => 'https://www.facebook.com/watch/?v=728711722778370',
+        'poster' => 'assets/img/proyectos/losas-talara.webp',
+        'featured' => false,
+        'orientation' => 'landscape',
+        'description' => 'Recuperación de la losa deportiva del Parque 53, impulsada por Petroperú en colaboración con el gobierno local y la comunidad.',
+    ],
+    [
+        'title' => 'Mercado de Abastos El Algarrobal — avance de obra',
+        'file' => '',
+        'youtube' => '',
+        'facebook' => 'https://www.facebook.com/watch/?v=1232433674186092',
+        'poster' => 'assets/img/proyectos/mercado-el-algarrobal.webp',
+        'featured' => false,
+        'orientation' => 'landscape',
+        'description' => 'Avance de la obra del Mercado de Abastos de El Algarrobal (Ilo).',
+    ],
+    [
+        'title' => 'Video de obra (Facebook)',
+        'file' => '',
+        'youtube' => '',
+        'facebook' => 'https://www.facebook.com/reel/859631801675936',
+        'poster' => 'assets/img/hero-poster.jpg',
+        'featured' => false,
+        'orientation' => 'portrait',
+        'description' => 'Video de obra publicado en Facebook.',
     ],
 ];
 
@@ -620,9 +630,7 @@ function find_project_by_slug(array $projects, string $slug): ?array
 function videos_ready(array $videos): array
 {
     return array_values(array_filter($videos, static function (array $v): bool {
-        $hasFile = !empty($v['file']);
-        $hasYt = youtube_id($v['youtube'] ?? null) !== null;
-        return $hasFile || $hasYt;
+        return video_is_playable($v);
     }));
 }
 

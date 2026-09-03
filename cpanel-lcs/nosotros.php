@@ -90,7 +90,7 @@ require __DIR__ . '/includes/header.php';
     <div class="section-head">
       <p class="eyebrow">Cobertura</p>
       <h2 class="display">Presencia regional</h2>
-      <p class="coverage-lead">Proyectos ejecutados en cinco regiones del Perú, incluyendo Provincia de Lima y Provincia de Moho (Puno).</p>
+      <p class="coverage-lead">Proyectos ejecutados en ocho regiones del Perú: Talara, Trujillo, Lima, Cañete, Callao, Ilo, Mariscal Nieto y Moho (Puno).</p>
     </div>
     <div class="coverage-layout">
       <div
